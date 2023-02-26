@@ -41,7 +41,7 @@
     <header>
         <div class="container-fluid">
             <div class="cover-wrapper">
-
+                CMS copy cleaner v1.0
             </div>
         </div>
     </header>
@@ -106,6 +106,18 @@
     </script>
 
 
+
+    <!-- [
+    {
+        "headerTitle": "Carousel",
+        "startIndexText": "<p><strong>CAROUSEL</strong></p>",
+        "endIndexText": "<p>[CTA]</p>",
+        "getTextBetweenTags": /<strong>(.*?)<(\/p|\/strong)>/g,
+    },
+
+    ] -->
+
+
     <!-- FUNCTIONS -->
     <script>
 
@@ -130,19 +142,26 @@
             [/<strong>Please review these Standard Promotional Terms and Conditions <\/strong>/g, 'Please review these Standard Promotional Terms and Conditions ', 'Bold characters', false], // unbold this line
             [/ am /g, ' AM ', 'Time lettercase', true], // converts pm to uppercase
             [/ pm /g, ' PM ', 'Time lettercase', true], // converts pm to uppercase
-            [/<p> <\/p>/g, '', 'Extra <p> tags', true], // cleans empty <p></p> tags
             [/<p><\/p>/g, '', 'Extra <p> tags', true], // cleans empty <p></p> tags
             [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
             [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', true], // cleans empty <p></p> tags
             [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra whitespaces', false],
-            [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra whitespaces', false],
+            [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
+            [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
             [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-            [/ <\/p>/g, '</p>', 'Extra whitespaces', false],
-            [/ <\/li>/g, '</li>', 'Extra whitespaces', false],
-            [/<p><\/p>/g, '', 'Extra whitespaces', false],
+            [/<strong><\/strong>/g, '<strong></strong>', 'Extra <strong> tags', false], // removes extra strong
+            [/ <\/p>/g, '</p>', 'Extra white spaces', false],
+            [/ <\/li>/g, '</li>', 'Extra white spaces', false],
+            [/<p><\/p>/g, '', 'Extra white spaces', false],
+            [/ <strong>/g, '<strong>', 'Extra white spaces', false],
+            [/<strong> /g, '<strong>', 'Extra white spaces', false],
+            [/<p> <strong>/g, '<p><strong>', 'Extra white spaces', false],
+            [/<p> <\/p>/g, '', 'Extra white spaces', false], // removes extra white spaces
+            [/! <\/p>/g, '!</p>', 'Extra white spaces', false], // removes extra white spaces
+            [/<p> /g, '<p>', 'Extra <p> tags', false], // removes extra white spaces
+            [/\$10Bonus/g, '$10 Bonus', 'Sticky Text', true],
 
         ];
 
@@ -216,21 +235,8 @@
 
             let textWrapper = [];
             console.log(tempTextStorage);
-
-            let regexp_gameContHeader_replacer = [
-                ['<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING:</strong><ul><li>'],
-                ['<li>The percentage of your wager that counts toward your wagering requirement varies based on the game you are playing. Here are the percentages:<ul>'],
-                ['<li>Slots, Jackpot Slots, Scratch Cards, Fixed Odds Games, Virtual Games: 100%<ul>'],
-                ['<li>For Example: If I play $125 on Scratch Games &rarr; I release it, as they count 100%.</li></ul></li>'],
-                ['<li>Table, Roulette, Live Dealer (All Games), Video Poker, Baccarat, Craps: 20%<ul>'],
-                ['<li>For Example: If I play $125 on Roulette &rarr; Only $25 is counted, as Roulette counts 20%.</li></ul></li>'],
-                ['<li>Blackjack (Non-Live Dealer Only): 10%<ul>'],
-                ['<li>For Example: If I play $125 on Blackjack &rarr; Only $12.50 is counted, as Blackjack counts 10%.</li></ul></li></ul></li></ul></li></ul>'],
-            ]
-
-            
+           
             let str = convertArray_toString(tempTextStorage);
-
 
             console.log(str);
             // console.log(regexp_gameContributionHeader);
