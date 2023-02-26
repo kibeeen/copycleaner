@@ -40,8 +40,8 @@ textarea:focus-visible {
 }
 
 
-.ck-source-editing-area {
-    position: fixed !important;
+div.ck-source-editing-area > textarea {
+    top: 0;
     left: 0;
 }
 
