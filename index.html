@@ -107,15 +107,6 @@
 
 
 
-    <!-- [
-    {
-        "headerTitle": "Carousel",
-        "startIndexText": "<p><strong>CAROUSEL</strong></p>",
-        "endIndexText": "<p>[CTA]</p>",
-        "getTextBetweenTags": /<strong>(.*?)<(\/p|\/strong)>/g,
-    },
-
-    ] -->
 
 
     <!-- FUNCTIONS -->
@@ -151,7 +142,7 @@
             [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
             [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-            [/<strong><\/strong>/g, '<strong></strong>', 'Extra <strong> tags', false], // removes extra strong
+            [/<strong><\/strong>/g, '', 'Extra <strong> tags', false], // removes extra strong
             [/ <\/p>/g, '</p>', 'Extra white spaces', false],
             [/ <\/li>/g, '</li>', 'Extra white spaces', false],
             [/<p><\/p>/g, '', 'Extra white spaces', false],
@@ -162,6 +153,7 @@
             [/! <\/p>/g, '!</p>', 'Extra white spaces', false], // removes extra white spaces
             [/<p> /g, '<p>', 'Extra <p> tags', false], // removes extra white spaces
             [/\$10Bonus/g, '$10 Bonus', 'Sticky Text', true],
+            [/<figure>(.*?)<(div)>/g, '', 'Figures', true],
 
         ];
 
@@ -176,8 +168,44 @@
             ['<li>', '</li></ul></li></ul></li></ul></li></ul>'],
         ];
 
+
+        const copyFix_settings = [
+
+            {
+                "id": 1,
+                "headerTitle": "Carousel",
+                "startIndexText": "<p><strong>CAROUSEL</strong></p>",
+                "endIndexText": "<p>[CTA]</p>",
+                "getTextBetweenTags": /<strong>(.*?)<(\/p|\/strong)>/g,
+                "wrapInHTML": false
+            },
+            {
+                "id": 2,
+                "headerTitle": "Promo Hub Key Terms",
+                "startIndexText": "<p><strong>PROMO HUB KEY TERMS</strong></p><p>[HERO IMAGE ART]</p>",
+                "endIndexText": "<p>Reward Tile</p>",
+                "getTextBetweenTags": /<p>(.*?)<(\/p)>/g,
+                "wrapInHTML": false
+            },
+            {
+                "id": 3,
+                "headerTitle": "Promo Landing Page",
+                "startIndexText": "<p><strong>PROMO HUB KEY TERMS</strong></p><p>[HERO IMAGE ART]</p>",
+                "endIndexText": "<p>Reward Tile</p>",
+                "getTextBetweenTags": /<p|strong>(.*?)<(\/p|\/strong)>/g,
+                "wrapInHTML": false
+            },
+
+        ]
+
+
+
+
+
+
         var cleanedText = null;
-        
+
+
 
 
         const cleanHTML = () => {
@@ -205,6 +233,7 @@
                 }
 
                 rawText = rawText.replace(regex, replacements);
+
                 count = 0;
 
             }
@@ -217,7 +246,6 @@
             indentFix(newCleanedText);
         }
 
-
         const convertArray_toString = (toClean_text) => {
 
             let cleaned_text = '';
@@ -228,17 +256,26 @@
 
         }
 
+        const cleanTags_fromArray = (array, regex) => {
+
+            for (let i = 0; i < array.length; i++) {
+                array[i] = array[i].replace(regex, '');
+            }
+            return array;
+
+        }
+
         const indentFix = (newCleanedText) => {
 
             const tempTextStorage = Array.from(cleanedText);
             const tempTextStorage_length = tempTextStorage.length;
 
             let textWrapper = [];
-            console.log(tempTextStorage);
-           
+            // console.log(tempTextStorage);
+
             let str = convertArray_toString(tempTextStorage);
 
-            console.log(str);
+            // console.log(str);
             // console.log(regexp_gameContributionHeader);
 
             let getStartIndex = '<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING:';
@@ -252,16 +289,16 @@
             if (matchesStartIndex) {
                 matchesStartIndex.forEach((matchesStart) => {
                     startIndexNumber = matchesStart.index;
-                    console.log("match found at " + matchesStart.index);
-                    console.log(tempTextStorage[matchesStart.index]);
+                    // console.log("match found at " + matchesStart.index);
+                    // console.log(tempTextStorage[matchesStart.index]);
                 })
             }
 
             if (matchesEndIndex) {
                 matchesEndIndex.forEach((matchesEnd) => {
                     endIndexNumber = matchesEnd.index;
-                    console.log("match found at " + matchesEnd.index);
-                    console.log(tempTextStorage[matchesEnd.index]);
+                    // console.log("match found at " + matchesEnd.index);
+                    // console.log(tempTextStorage[matchesEnd.index]);
                 })
             }
 
@@ -271,6 +308,8 @@
             // console.log(gameContributions_text);
 
             let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
+
+            // console.log(result);
 
 
             // console.log(result);
@@ -287,11 +326,13 @@
                 textWrapper[i] = header_gameContributionsWrapper[i][0] + result[i] + header_gameContributionsWrapper[i][1];
             }
 
+
+
             // textWrapper = convertArray_toString(textWrapper);
             let tempCleanedText_1 = newCleanedText;
             let tempCleanedText_2 = newCleanedText;
 
-            
+
             text_1 = convertArray_toString(Array.from(tempCleanedText_1).splice(0, startIndexNumber));
             text_insert = convertArray_toString(textWrapper);
             text_2 = convertArray_toString(Array.from(tempCleanedText_2).splice(endIndexNumber, tempTextStorage_length));
@@ -300,11 +341,58 @@
 
             document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
 
-            console.log(cleanedText);
+            extractDataFromCopy();
+
+            return cleanedText;
+
+            // console.log(cleanedText);
+
 
         }
 
-        
+
+        const extractDataFromCopy = () => {
+
+            const copy = cleanedText;
+            const settings = copyFix_settings;
+            const escape_tags = settings[0].getTextBetweenTags;
+
+            // this is the expression used to clean html tags
+            const regex = /(<([^>]+)>)/ig;
+
+            let search_start_text = settings[0].startIndexText;
+            let search_end_text = settings[0].endIndexText;
+
+            let start = [...copy.matchAll(search_start_text)];
+            let end = [...copy.matchAll(search_end_text)];
+
+            let start_index_length = settings[0].startIndexText.length;
+            let end_index_length = settings[0].endIndexText.length;
+
+            let start_index = copy.indexOf(search_start_text);
+            let end_index = copy.indexOf(search_end_text);
+
+            // cropped the carousel
+            let crop_text_from_copy = copy.substring(start_index + start_index_length, end_index);
+
+            // insert the matches found into this array
+            let cropped_text_escape = crop_text_from_copy.match(escape_tags);
+
+            cleanTags_fromArray(cropped_text_escape, regex);
+
+
+            console.log(cropped_text_escape);
+
+            console.log(search_start_text);
+            console.log(start_index_length);
+
+            console.log(search_end_text);
+            console.log(end_index_length);
+
+
+
+
+        }
 
 
 
@@ -313,7 +401,10 @@
 
 
 
-         
+
+
+
+
 
 
 
