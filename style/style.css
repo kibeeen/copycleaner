@@ -18,11 +18,23 @@
     padding: 20px;
 }
 
+.cleaned-text__wrapper {
+    background-color: #050505;
+   max-width: 800px;
+}
+
+.mpp-simulator__wrapper {
+    padding: 0 20px;
+    max-width: 780px !important;
+    margin: 0 auto;
+}
+
 
 #cleanedHTML__textarea {
     overflow: auto;
     padding: 10px;
     margin: 20px 0;
+    color: #050505;
     background-color: white;
     border: 1px solid #757575;
     height: 442px;
@@ -40,8 +52,8 @@ textarea:focus-visible {
 }
 
 
-.ck-source-editing-area {
-    position: fixed !important;
+div.ck-source-editing-area > textarea {
+    top: 0;
     left: 0;
 }
 
@@ -62,6 +74,12 @@ textarea:focus-visible {
     z-index: 3;
     opacity: 0;
     visibility: hidden;
+}
+
+
+.vn-profile-img .profile-img-width {
+    max-width: 100%;
+    width: 100%;
 }
 
 
