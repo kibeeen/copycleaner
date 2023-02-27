@@ -41,7 +41,7 @@
     <header>
         <div class="container-fluid">
             <div class="cover-wrapper">
-                CMS copy cleaner v1.1
+                CMS copy cleaner v1.2
             </div>
         </div>
     </header>
@@ -383,7 +383,9 @@
 
             document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
 
-            extractDataFromCopy();
+            // extractDataFromCopy();
+
+            console.log(cleanedText); 
 
             return cleanedText;
 
