@@ -41,7 +41,7 @@
     <header>
         <div class="container-fluid">
             <div class="cover-wrapper">
-                CMS copy cleaner v1.2
+                CMS copy cleaner v1.3
             </div>
         </div>
     </header>
@@ -141,47 +141,49 @@
             [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', true], // cleans empty <p></p> tags
             [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
-            [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
-            [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
-            [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-            [/ <\/p>/g, '</p>', 'Extra white spaces', false],
-            [/ <\/li>/g, '</li>', 'Extra white spaces', false],
-            [/<p><\/p>/g, '', 'Extra white spaces', false],
-            [/ <strong>/g, '<strong>', 'Extra white spaces', false],
-            [/<strong> /g, '<strong>', 'Extra white spaces', false],
-            [/<p> <strong>/g, '<p><strong>', 'Extra white spaces', false],
-            [/<p> <\/p>/g, '', 'Extra white spaces', false], // removes extra white spaces
-            [/! <\/p>/g, '!</p>', 'Extra white spaces', false], // removes extra white spaces
-            [/<p> /g, '<p>', 'Extra <p> tags', false], // removes extra white spaces
-            [/\$10Bonus/g, '$10 Bonus', 'Sticky Text', true],
-            [/<p>\[REWARD TILE\]<\/p>/gi, '<span>[REWARD TILE]</span>', 'Rewrite Text', false],
-            [/<p>REWARD TILE<\/p>/gi, '<span>[REWARD TILE]</span>', 'Rewrite Text', false],
-            [/<p>SUBTITLE:/gi, '', 'Rewrite Text', false],
-            [/<p>\[SHORT SUMMARY]\: /gi, '[SHORT SUMMARY]<p>', 'Rewrite Text', false],
-            [/<p>\[SHORT SUMMARY\]<\/p>/gi, '<span>[SHORT SUMMARY]</span>', 'Rewrite Text', false],
-            [/H1:/g, '', 'Rewrite Text', false],
-            [/H2:/g, '', 'Rewrite Text', false],
-            [/  /g, ' ', 'Rewrite Text', false],
-            [/> </g, '><', 'Rewrite Text', false],
-            [/<p>\[promotion details\]<\/p>/g, '<span>[promotion details]</span>', 'Rewrite Text', false],
-            [/<p>\[CTA\]<\/p>/g, '<span>[CTA]</span>', 'Rewrite Text', false],
-            [/<strong>\[CTA\]<\/strong>/g, '<span>[CTA]</span>', 'Rewrite Text', false],
-            [/<p>\[PREVIEW DESCRIPTION\]<\/p>/g, '<span>[PREVIEW DESCRIPTION]</span>', 'Rewrite Text', false],
-            [/<p>\[PREVIEW DESCRIPTION\]:<\/p>/g, '<span>[PREVIEW DESCRIPTION]</span>', 'Rewrite Text', false],
-            [/<p>\[OVERLAY DESCRIPTION\]<\/p>/g, '<span>[OVERLAY DESCRIPTION]</span>', 'Rewrite Text', false],
-            [/<p>\[TOASTER DESCRIPTION\]<\/p>/g, '<span>[TOASTER DESCRIPTION]</span>', 'Rewrite Text', false],
-            [/<p>\[HERO IMAGE ART\]<\/p>/g, '<span>[HERO IMAGE ART]</span>', 'Rewrite Text', false],
-            [/<p>\[HERO IMAGE ART\] <\/p>/g, '<span>[HERO IMAGE ART]</span>', 'Rewrite Text', false],
-            [/<p>\[promotion dates\] /gi, '[promotional dates]<p>', 'Rewrite Text', false],
-            [/\[promotional dates\] /gi, '[promotional dates]<p>', 'Rewrite Text', false],
-            [/\[promotion description\] /gi, '</p>[promotion description]<p>', 'Rewrite Text', false],
-            [/<p>\[FULLVIEW TITLE\]: /gi, '[FULLVIEW TITLE]:<p>', 'Rewrite Text', false],
-            [/<p>\[FULLVIEW DESCRIPTION\]: /gi, '[FULLVIEW DESCRIPTION]:<p>', 'Rewrite Text', false],
-            [/<p>\[FULLVIEW DESCRIPTION\]<\/p>/gi, '', 'Rewrite Text', false],
-            [/<p><strong>\[CTA\] /gi, '[CTA]:<p><strong>', 'Rewrite Text', false],
-            [/\[FULLVIEW TITLE\]/gi, '', 'Rewrite Text', false],
-            [/<p>\[HERO IMAGE ART\]  <\/p>/gi, '', 'Rewrite Text', false],
+            [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
+            [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
+
+ 
+
+            // [/ <\/p>/g, '</p>', 'Extra white spaces', false],
+            // [/ <\/li>/g, '</li>', 'Extra white spaces', false],
+            // [/<p><\/p>/g, '', 'Extra white spaces', false],
+            // [/ <strong>/g, '<strong>', 'Extra white spaces', false],
+            // [/<strong> /g, '<strong>', 'Extra white spaces', false],
+            // [/<p> <strong>/g, '<p><strong>', 'Extra white spaces', false],
+            // [/<p> <\/p>/g, '', 'Extra white spaces', false], // removes extra white spaces
+            // [/! <\/p>/g, '!</p>', 'Extra white spaces', false], // removes extra white spaces
+            // [/<p> /g, '<p>', 'Extra <p> tags', false], // removes extra white spaces
+
+
+            // [/<p>\[REWARD TILE\]<\/p>/gi, '<span>[REWARD TILE]</span>', 'Rewrite Text', false],
+            // [/<p>REWARD TILE<\/p>/gi, '<span>[REWARD TILE]</span>', 'Rewrite Text', false],
+            // [/<p>SUBTITLE:/gi, '', 'Rewrite Text', false],
+            // [/<p>\[SHORT SUMMARY]\: /gi, '[SHORT SUMMARY]<p>', 'Rewrite Text', false],
+            // [/<p>\[SHORT SUMMARY\]<\/p>/gi, '<span>[SHORT SUMMARY]</span>', 'Rewrite Text', false],
+            // [/H1:/g, '', 'Rewrite Text', false],
+            // [/H2:/g, '', 'Rewrite Text', false],
+            // [/  /g, ' ', 'Rewrite Text', false],
+            // [/> </g, '><', 'Rewrite Text', false],
+            // [/<p>\[promotion details\]<\/p>/g, '<span>[promotion details]</span>', 'Rewrite Text', false],
+            // [/<p>\[CTA\]<\/p>/g, '<span>[CTA]</span>', 'Rewrite Text', false],
+            // [/<strong>\[CTA\]<\/strong>/g, '<span>[CTA]</span>', 'Rewrite Text', false],
+            // [/<p>\[PREVIEW DESCRIPTION\]<\/p>/g, '<span>[PREVIEW DESCRIPTION]</span>', 'Rewrite Text', false],
+            // [/<p>\[PREVIEW DESCRIPTION\]:<\/p>/g, '<span>[PREVIEW DESCRIPTION]</span>', 'Rewrite Text', false],
+            // [/<p>\[OVERLAY DESCRIPTION\]<\/p>/g, '<span>[OVERLAY DESCRIPTION]</span>', 'Rewrite Text', false],
+            // [/<p>\[TOASTER DESCRIPTION\]<\/p>/g, '<span>[TOASTER DESCRIPTION]</span>', 'Rewrite Text', false],
+            // [/<p>\[HERO IMAGE ART\]<\/p>/g, '<span>[HERO IMAGE ART]</span>', 'Rewrite Text', false],
+            // [/<p>\[HERO IMAGE ART\] <\/p>/g, '<span>[HERO IMAGE ART]</span>', 'Rewrite Text', false],
+            // [/<p>\[promotion dates\] /gi, '[promotional dates]<p>', 'Rewrite Text', false],
+            // [/\[promotional dates\] /gi, '[promotional dates]<p>', 'Rewrite Text', false],
+            // [/\[promotion description\] /gi, '</p>[promotion description]<p>', 'Rewrite Text', false],
+            // [/<p>\[FULLVIEW TITLE\]: /gi, '[FULLVIEW TITLE]:<p>', 'Rewrite Text', false],
+            // [/<p>\[FULLVIEW DESCRIPTION\]: /gi, '[FULLVIEW DESCRIPTION]:<p>', 'Rewrite Text', false],
+            // [/<p>\[FULLVIEW DESCRIPTION\]<\/p>/gi, '', 'Rewrite Text', false],
+            // [/<p><strong>\[CTA\] /gi, '[CTA]:<p><strong>', 'Rewrite Text', false],
+            // [/\[FULLVIEW TITLE\]/gi, '', 'Rewrite Text', false],
+            // [/<p>\[HERO IMAGE ART\]  <\/p>/gi, '', 'Rewrite Text', false],
 
 
 
