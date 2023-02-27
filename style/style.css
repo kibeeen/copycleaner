@@ -18,11 +18,23 @@
     padding: 20px;
 }
 
+.raw-text__wrapper {
+    background-color: #050505;
+   max-width: 800px;
+}
+
+.mpp-simulator__wrapper {
+    padding: 0 20px;
+    max-width: 780px !important;
+    margin: 0 auto;
+}
+
 
 #cleanedHTML__textarea {
     overflow: auto;
     padding: 10px;
     margin: 20px 0;
+    color: #050505;
     background-color: white;
     border: 1px solid #757575;
     height: 442px;
@@ -43,6 +55,13 @@ textarea:focus-visible {
 div.ck-source-editing-area > textarea {
     top: 0;
     left: 0;
+    overflow: auto;
+    height: 600px;
+    font-size: 0.85em;
+    line-height: 1.25em;
+    font-family: monospace;
+    color: #363636;
+    background-color: #f3f3f3;
 }
 
 
@@ -62,6 +81,12 @@ div.ck-source-editing-area > textarea {
     z-index: 3;
     opacity: 0;
     visibility: hidden;
+}
+
+
+.vn-profile-img .profile-img-width {
+    max-width: 100%;
+    width: 100%;
 }
 
 
