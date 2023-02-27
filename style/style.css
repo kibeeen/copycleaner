@@ -18,7 +18,7 @@
     padding: 20px;
 }
 
-.cleaned-text__wrapper {
+.raw-text__wrapper {
     background-color: #050505;
    max-width: 800px;
 }
@@ -55,6 +55,13 @@ textarea:focus-visible {
 div.ck-source-editing-area > textarea {
     top: 0;
     left: 0;
+    overflow: auto;
+    height: 600px;
+    font-size: 0.85em;
+    line-height: 1.25em;
+    font-family: monospace;
+    color: #363636;
+    background-color: #f3f3f3;
 }
 
 
