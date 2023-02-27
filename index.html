@@ -136,7 +136,8 @@
                                         <div class="promotion-tac-header epcot-text-color epcot-tac-arrow"><span>Terms
                                                 and
                                                 Conditions</span><i class="theme-up"></i></div><!---->
-                                        <div id="promo-copy-fullterms" class="promotion-tac-body pc-txt epcot-text-color">
+                                        <div id="promo-copy-fullterms"
+                                            class="promotion-tac-body pc-txt epcot-text-color">
                                             <!-- PROMO FULL TERMS HERE -->
                                         </div>
                                     </div><!----><!----><!----><!---->
@@ -233,17 +234,18 @@
             [/ pm /g, ' PM ', 'Time lettercase', true], // converts pm to uppercase
             [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
             [/\(as defined in the Terms of Service&nbsp;/g, '(as defined in the Terms of Service', 'Bold characters', false],
-            [/\(<i>Link to Terms of Service<\/i>\)/g, '', '"Link to Terms Service" lines', true], 
-            [/<i>\(Link to Terms of Service\)<\/i> /g, '', '"Link to Terms Service" lines', true], 
-            [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', '"Link to Terms Service" lines', true], 
-            [/<i>\(Link to Standard Promo TCs\)<\/i><strong> by <\/strong>/g, 'by ', 'Bold characters', false], 
-            [/\(<i>Link<\/i>\)/g, '', '', false], 
-            [/<i>\(Link to TCs\)<\/i>/g, '', '', false], 
+            [/\(<i>Link to Terms of Service<\/i>\)/g, '', '"Link to Terms Service" lines', true],
+            [/<i>\(Link to Terms of Service\)<\/i> /g, '', '"Link to Terms Service" lines', true],
+            [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', '"Link to Terms Service" lines', true],
+            [/<i>\(Link to Standard Promo TCs\)<\/i><strong> by <\/strong>/g, 'by ', 'Bold characters', false],
+            [/\(<i>Link<\/i>\)/g, '', '', false],
+            [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
             [/<strong>My Account &gt; My Balance.<\/strong>/g, 'My Account &gt; My Balance.', 'Bold characters', false],
             [/<strong>Please review these Standard Promotional Terms and Conditions <\/strong>/g, 'Please review these Standard Promotional Terms and Conditions ', 'Bold characters', false],
             [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
+            [/<strong>DISCLAIMER:<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
             [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
             [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
             [/\(<i>Link<\/i>\) /g, '', '', false],
@@ -254,11 +256,13 @@
             [/\(as defined in the <strong>Terms of Service<\/strong>\)/g, 'as defined in the Terms of Service', '', false],
             [/<strong>Standard Promotional Terms and Conditions <\/strong> by signing/g, 'Standard Promotional Terms and Conditions by signing', '', false],
             [/<strong>Order of Funds Used for Wagering:<\/strong> <\/p>/g, '<p><strong>Order of Funds Used for Wagering:</strong></p>', '', false],
+            [/Game Contributions Toward Bonus Wagering/g, 'GAME CONTRIBUTIONS TOWARD BONUS WAGERING:', '', false],
 
             // ADDING LINK TO TEXT
             [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], 
+            [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
+            [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
 
 
 
@@ -366,7 +370,16 @@
         var cleanedText = null;
 
 
+        function addSpacesAroundText(str) {
+            const regexes = [/Bonus Dollars/, /FREEPLAY/];
+            let result = str;
+            regexes.forEach(regex => {
+                const re = new RegExp(`(\\S*)(${regex.source})(\\S*)`, 'g');
+                result = result.replace(re, '$1 $2 $3');
+            });
 
+            return result;
+        }
 
         const cleanHTML = () => {
 
@@ -400,11 +413,15 @@
 
             cleanedText = rawText;
 
-            const newCleanedText = cleanedText;
+           
+
+            const newCleanedText =  addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
             // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
             // console.log(cleanedText)
             indentFix(newCleanedText);
         }
+
+
 
         const convertArray_toString = (toClean_text) => {
 
@@ -435,15 +452,15 @@
             const tempTextStorage_length = tempTextStorage.length;
 
             let textWrapper = [];
-            // console.log(tempTextStorage);
+            // console.log(cleanedText);
 
             let str = convertArray_toString(tempTextStorage);
 
             // console.log(str);
             // console.log(regexp_gameContributionHeader);
 
-            let getStartIndex = '<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING:';
-            let getEndIndex = '<p><strong>Order of Funds Used for Wagering:</strong>'; 
+            let getStartIndex = '<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING';
+            let getEndIndex = '<p><strong>Order of Funds Used for Wagering:</strong>';
             let matchesStartIndex = [...str.matchAll(getStartIndex)];
             let matchesEndIndex = [...str.matchAll(getEndIndex)];
             let startIndexNumber = 0;
@@ -473,7 +490,7 @@
 
             let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
 
-            console.log(result);
+            // console.log(result);
 
 
             // console.log(result);
@@ -542,7 +559,7 @@
                 // cropped the carousel
                 let crop_text_from_copy = copy.substring(start_index + start_index_length, end_index);
 
-                console.log(crop_text_from_copy);
+                // console.log(crop_text_from_copy);
 
                 // insert the matches found into this array
                 let cropped_text_escape = crop_text_from_copy.match(escape_tags);
