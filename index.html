@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CMS Copy Cleaner</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -312,14 +312,28 @@
         ];
 
         const header_gameContributionsWrapper = [
-            ['<li><strong>', '</strong><ul>'],
-            ['<li>', '<ul>'],
-            ['<li>', '<ul>'],
-            ['<li>', '</li></ul></li>'],
-            ['<li>', '<ul>'],
-            ['<li>', '</li></ul></li>'],
-            ['<li>', '<ul>'],
-            ['<li>', '</li></ul></li></ul></li></ul></li></ul>'],
+            [
+                ['<li><strong>', '</strong><ul>'],
+                ['<li>', '<ul>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li></ul></li></ul></li></ul>'],
+            ],
+            [
+                ['<li><strong>', '</strong><ul>'],
+                ['<li>', '<ul>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li>'],
+                ['<li>', '</li>'],
+                ['<li>', '<ul>'],
+                ['<li>', '</li></ul></li></ul></li></ul></li></ul>'],
+            ],
+
         ];
 
 
@@ -415,9 +429,9 @@
 
             cleanedText = rawText;
 
-           const newCleanedText = cleanedText;
+            //    const newCleanedText = cleanedText;
 
-            // const newCleanedText =  addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
+            const newCleanedText = addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
             // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
             // console.log(cleanedText)
             indentFix(newCleanedText);
@@ -476,7 +490,7 @@
 
                     let x = [];
                     for (let i = 0; i < 12; i++) {
-                         x[i] = tempTextStorage[startIndexNumber+i];
+                        x[i] = tempTextStorage[startIndexNumber + i];
                     }
                     console.log(x);
                 })
@@ -488,7 +502,7 @@
                     console.log("match found at " + matchesEnd.index);
                     let x = [];
                     for (let i = 0; i < 20; i++) {
-                         x[i] = tempTextStorage[endIndexNumber -i];
+                        x[i] = tempTextStorage[endIndexNumber - i];
                     }
                     console.log(x);
                 })
@@ -505,7 +519,9 @@
 
 
             // console.log(result);
-            console.log(header_gameContributionsWrapper.length); 
+            console.log(header_gameContributionsWrapper.length);
+
+            // if (result.length) continue coding here 6:45 PM
 
             // Remove HTML Tags from array
             let regex = /(<([^>]+)>)/ig;
