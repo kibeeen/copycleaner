@@ -224,6 +224,9 @@
             [/<span style="color:red;">/g, '', 'Span tags', false],
             [/<\/span>/g, '', 'Span tags', false],
             [/<p><\/p>/g, '', 'Extra <p> tags', true],
+            [/<p> <\/p>/g, '', 'Extra <p> tags', true],
+            [/<p>\s*<\/p>/g, '', 'Extra <p> tags', true],
+            [/<\/ul><p> <\/p><p>/g, '', 'Extra <p> tags', true],
             [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', true],
             [/<strong>\s*<\/strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
             [/<\/strong>\s*<strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
@@ -412,9 +415,9 @@
 
             cleanedText = rawText;
 
-           
+           const newCleanedText = cleanedText;
 
-            const newCleanedText =  addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
+            // const newCleanedText =  addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
             // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
             // console.log(cleanedText)
             indentFix(newCleanedText);
@@ -451,7 +454,7 @@
             const tempTextStorage_length = tempTextStorage.length;
 
             let textWrapper = [];
-            // console.log(cleanedText);
+            console.log(cleanedText);
 
             let str = convertArray_toString(tempTextStorage);
 
@@ -469,36 +472,46 @@
             if (matchesStartIndex) {
                 matchesStartIndex.forEach((matchesStart) => {
                     startIndexNumber = matchesStart.index;
-                    // console.log("match found at " + matchesStart.index);
-                    // console.log(tempTextStorage[matchesStart.index]);
+                    console.log("match found at " + matchesStart.index);
+
+                    let x = [];
+                    for (let i = 0; i < 12; i++) {
+                         x[i] = tempTextStorage[startIndexNumber+i];
+                    }
+                    console.log(x);
                 })
             }
 
             if (matchesEndIndex) {
                 matchesEndIndex.forEach((matchesEnd) => {
                     endIndexNumber = matchesEnd.index;
-                    // console.log("match found at " + matchesEnd.index);
-                    // console.log(tempTextStorage[matchesEnd.index]);
+                    console.log("match found at " + matchesEnd.index);
+                    let x = [];
+                    for (let i = 0; i < 20; i++) {
+                         x[i] = tempTextStorage[endIndexNumber -i];
+                    }
+                    console.log(x);
                 })
             }
 
 
             gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
 
-            // console.log(gameContributions_text);
+            console.log(gameContributions_text);
 
-            let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
+            let result = gameContributions_text.match(/<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/li>|<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/ul>/g);
+
+            console.log(result);
+
 
             // console.log(result);
-
-
-            // console.log(result);
-            // console.log(header_gameContributionsWrapper.length); 
+            console.log(header_gameContributionsWrapper.length); 
 
             // Remove HTML Tags from array
             let regex = /(<([^>]+)>)/ig;
             for (let i = 0; i < header_gameContributionsWrapper.length; i++) {
                 result[i] = result[i].replace(regex, '');
+                console.log(result[i]);
             }
 
             // Wrap HTML Tags in array
@@ -524,7 +537,7 @@
 
             // extractDataFromCopy();
 
-            console.log(cleanedText);
+            // console.log(cleanedText);
 
             return cleanedText;
 
