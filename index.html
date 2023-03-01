@@ -49,7 +49,7 @@
     <header>
         <div class="container-fluid">
             <div class="cover-wrapper">
-                CMS copy cleaner v1.3
+                CMS copy cleaner v1.4
             </div>
         </div>
     </header>
@@ -222,6 +222,8 @@
             [/<span style="color:#202124;">/g, '', 'Span tags', false],
             [/<span style="color:#242424;">/g, '', 'Span tags', false],
             [/<span style="color:red;">/g, '', 'Span tags', false],
+            [/<span style="color:#050505;">/g, '', 'Span tags', false],
+            [/<span style="color:#2F5496;">/g, '', 'Span tags', false],
             [/<\/span>/g, '', 'Span tags', false],
             [/<p><\/p>/g, '', 'Extra <p> tags', true],
             [/<p> <\/p>/g, '', 'Extra <p> tags', true],
@@ -236,10 +238,13 @@
             [/ am /g, ' AM ', 'Time lettercase', true], // converts pm to uppercase
             [/ pm /g, ' PM ', 'Time lettercase', true], // converts pm to uppercase
             [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
+            [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
             [/\(as defined in the Terms of Service&nbsp;/g, '(as defined in the Terms of Service', 'Bold characters', false],
             [/\(<i>Link to Terms of Service<\/i>\)/g, '', '"Link to Terms Service" lines', true],
             [/<i>\(Link to Terms of Service\)<\/i> /g, '', '"Link to Terms Service" lines', true],
             [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', '"Link to Terms Service" lines', true],
+            [/\(Link to Terms of Service\)/g, '', '"Link to Terms Service" lines', true],
+            [/<i>\(Link to Standard Promo TCs\)<\/i>/g, '', '"Link to Terms Service" lines', true],
             [/<i>\(Link to Standard Promo TCs\)<\/i><strong> by <\/strong>/g, 'by ', 'Bold characters', false],
             [/\(<i>Link<\/i>\)/g, '', '', false],
             [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
@@ -254,6 +259,7 @@
             [/\(<i>Link<\/i>\) /g, '', '', false],
             [/\(<i>Link<\/i>\)/g, '', '', false],
             [/<i>\(Link\)<\/i>/g, '', '', false],
+            [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
             [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', '', false],
             [/<strong>Standard Promotional Terms and Conditions<\/strong>/g, 'Standard Promotional Terms and Conditions', '', false],
             [/\(as defined in the <strong>Terms of Service<\/strong>\)/g, 'as defined in the Terms of Service', '', false],
@@ -261,11 +267,13 @@
             [/<strong>Order of Funds Used for Wagering:<\/strong> <\/p>/g, '<p><strong>Order of Funds Used for Wagering:</strong></p>', '', false],
             [/Game Contributions Toward Bonus Wagering/g, 'GAME CONTRIBUTIONS TOWARD BONUS WAGERING:', '', false],
 
+
             // ADDING LINK TO TEXT
             [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
             [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
+            [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
 
 
             // [/ <\/p>/g, '</p>', 'Extra white spaces', false],
@@ -390,7 +398,7 @@
 
 
         function addSpacesAroundText(str) {
-            const regexes = [/Bonus Dollars/, /FREEPLAY/];
+            const regexes = [/Bonus Dollars/, /FREEPLAY®/];
             let result = str;
             regexes.forEach(regex => {
                 const re = new RegExp(`(\\S*)(${regex.source})(\\S*)`, 'g');
@@ -400,9 +408,18 @@
             return result;
         }
 
+        function removeFigureDivTags(inputString) {
+            const regex = /(<figure.*?>|<\/figure>|<svg.*?>[\s\S]*?(?:(?=<\/svg>)|<\/svg>)|<div.*?>)[\s\S]*?(?!(?:[^<]+>|[^>]+<\/table>))(?:(?=<\/table>)|<\/table>)/g;
+            const outputString = inputString.replace(regex, '');
+            return outputString;
+        }
+
+
+
         const cleanHTML = () => {
 
             let rawText = document.getElementById('ck5-textarea').innerHTML;
+            rawText = removeFigureDivTags(rawText);
             let count = 0;
             let errorCatcher = [];
             let totalErrors = 0;
@@ -468,7 +485,9 @@
         const indentFix = (newCleanedText) => {
 
             const tempTextStorage = Array.from(cleanedText);
+            const tempCleanedText = cleanedText;
             const tempTextStorage_length = tempTextStorage.length;
+
 
             let textWrapper = [];
             console.log(cleanedText);
@@ -485,122 +504,167 @@
             let startIndexNumber = 0;
             let endIndexNumber = 0;
 
+            // CHECKS IF THE TERMS HAVE THE "GAME CONTRIBUTIONS HEADER" 
 
-            if (matchesStartIndex) {
+
+            if (matchesStartIndex != '') {
+                alert(matchesStartIndex);
                 matchesStartIndex.forEach((matchesStart) => {
                     startIndexNumber = matchesStart.index;
+
 
                     console.log("match found at " + matchesStart.index);
                     // console.log(tempTextStorage.startIndexNumber);
                 })
-            }
 
-            if (matchesEndIndex) {
-                matchesEndIndex.forEach((matchesEnd) => {
-                    endIndexNumber = matchesEnd.index;
-                    console.log("match found at " + matchesEnd.index);
-                    // console.log(tempTextStorage.endIndexNumber);
-                })
-            }
+                if (matchesEndIndex) {
+                    matchesEndIndex.forEach((matchesEnd) => {
+                        endIndexNumber = matchesEnd.index;
+                        console.log("match found at " + matchesEnd.index);
 
 
-            gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
-
-            console.log(gameContributions_text);
-
-            let result = gameContributions_text.match(/<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/li>|<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/ul>/g);
-
-            console.log(result);
-
-
-            // console.log(result);
-            // console.log('array length ' + gameCont_headerWrapper[0].length);
-
-            // for(let i = 0; i < gameCont_headerWrapper[i].length; i++) {
-            //     console.log('true');
-            //     console.log(gameCont_headerWrapper[i].length);
-            //     console.log(result.length);
-            //     if(gameCont_headerWrapper[i].length == result.length) {
-
-            //     }
-            // }
-
-
-
-            gameCont_headerWrapper.forEach((number, index) => {
-                console.log('Index: ' + index + ' Value: ' + number + ' length ' + number.length);
-
-                if (result.length == number.length) {
-                    
-                    console.log('result == number');
-                    console.log('length of wrapper ' + gameCont_headerWrapper.length);
-
-                    let regex = /(<([^>]+)>)/ig;
-                    for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
-
-                        // console.log('true');
-                        result[i] = result[i].replace(regex, '');
-
-                        // console.log(result[i]);
-                        
-                    }
-                    
-
-                    console.log(result);
-
-                    console.log(gameCont_headerWrapper[0][0][0]);
-                    console.log(gameCont_headerWrapper[0][1][0]);
-                    console.log(gameCont_headerWrapper[0][2][0]);
-                    console.log(gameCont_headerWrapper[0][3][0]);
-                    console.log(gameCont_headerWrapper[0][4][0]);
-                    console.log(gameCont_headerWrapper[0][5][0]);
-                    console.log(gameCont_headerWrapper[0][6][0]);
-                    console.log(gameCont_headerWrapper[0][7][0]);
-                    console.log('\n')
-                    console.log(gameCont_headerWrapper[0][0][1]);
-                    console.log(gameCont_headerWrapper[0][1][1]);
-                    console.log(gameCont_headerWrapper[0][2][1]);
-                    console.log(gameCont_headerWrapper[0][3][1]);
-                    console.log(gameCont_headerWrapper[0][4][1]);
-                    console.log(gameCont_headerWrapper[0][5][1]);
-                    console.log(gameCont_headerWrapper[0][6][1]);
-                    console.log(gameCont_headerWrapper[0][7][1]);
-                    // console.log(gameCont_headerWrapper[0][8][1]);
-
-                    // Wrap HTML Tags in array
-                    for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
-                        console.log(i);
-                        console.log(gameCont_headerWrapper[0][i][0]);
-                        textWrapper[i] = gameCont_headerWrapper[0][i][0] + result[i] + gameCont_headerWrapper[0][i][1];
-                    }
-
-                    console.log(textWrapper);
-
+                        // console.log(tempTextStorage.endIndexNumber);
+                    })
                 }
-            });
 
-            // Remove HTML Tags from array
+                const cropText_1 = tempCleanedText.substring(0, startIndexNumber);
+                const cropText_2 = tempCleanedText.substring(endIndexNumber, cleanedText.length);
+
+                gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
+
+                console.log(gameContributions_text);
+
+                let result = gameContributions_text.match(/<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/li>|<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/ul>/g);
+
+                console.log(result);
+
+
+                // console.log(result);
+                // console.log('array length ' + gameCont_headerWrapper[0].length);
+
+                // for(let i = 0; i < gameCont_headerWrapper[i].length; i++) {
+                //     console.log('true');
+                //     console.log(gameCont_headerWrapper[i].length);
+                //     console.log(result.length);
+                //     if(gameCont_headerWrapper[i].length == result.length) {
+
+                //     }
+                // }
 
 
 
 
-            // textWrapper = convertArray_toString(textWrapper);
-            let tempCleanedText_1 = newCleanedText;
-            let tempCleanedText_2 = newCleanedText;
+                gameCont_headerWrapper.forEach((number, index) => {
+                    console.log('Index: ' + index + ' Value: ' + number + ' length ' + number.length);
+                    let counter = 0;
 
 
-            text_1 = convertArray_toString(Array.from(tempCleanedText_1).splice(0, startIndexNumber));
-            text_insert = convertArray_toString(textWrapper);
-            text_2 = convertArray_toString(Array.from(tempCleanedText_2).splice(endIndexNumber, tempTextStorage_length));
+                    if (result != null && result.length == number.length) {
 
-            cleanedText = text_1 + text_insert + text_2;
+                        alert('true');
+                        counter++;
 
-            document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
-            document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
 
-            // extractDataFromCopy();
+                        console.log('result: ' + result.length + ' == number: ' + number.length);
+                        console.log('length of wrapper ' + gameCont_headerWrapper.length);
 
-            // console.log(cleanedText);
+                        let regex = /(<([^>]+)>)/ig;
+                        for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
+                            result[i] = result[i].replace(regex, '');
+                            // console.log(result[i]);                 
+                        }
+
+
+                        console.log(result);
+
+                        console.log(gameCont_headerWrapper[1][0][0]);
+                        console.log(gameCont_headerWrapper[1][1][0]);
+                        console.log(gameCont_headerWrapper[1][2][0]);
+                        console.log(gameCont_headerWrapper[1][3][0]);
+                        console.log(gameCont_headerWrapper[1][4][0]);
+                        console.log(gameCont_headerWrapper[1][5][0]);
+                        console.log(gameCont_headerWrapper[1][6][0]);
+                        console.log(gameCont_headerWrapper[1][7][0]);
+                        console.log('\n')
+                        console.log(gameCont_headerWrapper[1][0][1]);
+                        console.log(gameCont_headerWrapper[1][1][1]);
+                        console.log(gameCont_headerWrapper[1][2][1]);
+                        console.log(gameCont_headerWrapper[1][3][1]);
+                        console.log(gameCont_headerWrapper[1][4][1]);
+                        console.log(gameCont_headerWrapper[1][5][1]);
+                        console.log(gameCont_headerWrapper[1][6][1]);
+                        console.log(gameCont_headerWrapper[1][7][1]);
+                        // console.log(gameCont_headerWrapper[0][8][1]);
+                        console.log('\n')
+                        console.log();
+
+                        // Wrap HTML Tags in array
+                        for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
+                            console.log(i);
+                            console.log(gameCont_headerWrapper[result.length - 8][i][0]);
+                            textWrapper[i] = gameCont_headerWrapper[result.length - 8][i][0] + result[i] + gameCont_headerWrapper[result.length - 8][i][1];
+                            // console.log(textWrapper[i]);
+                        }
+
+
+
+
+
+                    }
+
+                    counter = 0;
+                });
+
+                // Remove HTML Tags from array
+
+
+
+
+                // textWrapper = convertArray_toString(textWrapper);
+                const tempCleanedText_1 = newCleanedText;
+                const tempCleanedText_2 = newCleanedText;
+
+                // console.log(endIndexNumber);
+
+                // checker -- check if
+                let x = '';
+                for (let i = 0; i < 20; i++) {
+                    x += tempTextStorage[endIndexNumber + i];
+                }
+                // console.log(x);
+
+                let y = '';
+                for (let y = 20; y < 0; y--) {
+                    y += tempTextStorage[startIndexNumber + y];
+                }
+                // console.log(tempTextStorage[startIndexNumber-1]);
+                // console.log(tempCleanedText_1.length);
+
+
+
+
+                text_insert = convertArray_toString(textWrapper);
+
+                // console.log()
+
+
+                // console.log(cropText_2);
+                // console.log(cleanedText);
+
+                cleanedText = cropText_1 + text_insert + cropText_2;
+
+                document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
+                document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
+
+                // extractDataFromCopy();
+
+                console.log(cleanedText);
+            } else {
+                document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
+                document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
+            }
+
+
 
             return cleanedText;
 
