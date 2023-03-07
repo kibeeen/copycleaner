@@ -15,8 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" type="text/css" href="style/ckeditor.css">
 
-    <link rel="stylesheet" type="text/css" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="style/betmgm.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
 
 
     <link rel="preload" as="style"
@@ -270,6 +270,7 @@
 
             // ADDING LINK TO TEXT
             [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
+            [/<strong>here;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\).<\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
             [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
             [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
@@ -435,7 +436,7 @@
 
         const cleanHTML = () => {
 
-        
+
             const isCopied = () => {
                 document.getElementById('overlay-loading').style.visibility = "visible";
                 let time_left = 1;
@@ -447,13 +448,12 @@
                     }
 
                     document.getElementById('overlay-loading').style.opacity = time_left;
-                    console.log(time_left);
-                    console.log(document.getElementById('overlay-loading').style.opacity);
+                    // console.log(time_left);
+                    // console.log(document.getElementById('overlay-loading').style.opacity);
                     time_left -= .1;
-                    
 
-                }, 40);
-                
+                }, 50);
+
             }
 
             isCopied();
@@ -494,13 +494,9 @@
             //    const newCleanedText = cleanedText;
 
             const newCleanedText = addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
-            document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
+            // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
             // console.log(cleanedText)
             indentFix(newCleanedText);
-
-            console.log(cleanedText);
-
-            editor.setData(cleanedText);
         }
 
 
@@ -554,21 +550,19 @@
 
 
             if (matchesStartIndex != '') {
-                alert(matchesStartIndex);
+                // alert(matchesStartIndex);
                 matchesStartIndex.forEach((matchesStart) => {
                     startIndexNumber = matchesStart.index;
 
 
-                    console.log("match found at " + matchesStart.index);
+                    // console.log("match found at " + matchesStart.index);
                     // console.log(tempTextStorage.startIndexNumber);
                 })
 
                 if (matchesEndIndex) {
                     matchesEndIndex.forEach((matchesEnd) => {
                         endIndexNumber = matchesEnd.index;
-                        console.log("match found at " + matchesEnd.index);
-
-
+                        // console.log("match found at " + matchesEnd.index);
                         // console.log(tempTextStorage.endIndexNumber);
                     })
                 }
@@ -578,12 +572,12 @@
 
                 gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
 
-                console.log(gameContributions_text);
+                // console.log(gameContributions_text);
 
                 let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
                 // let result = gameContributions_text.match(/<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/li>|<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/ul>/g);
 
-                console.log(result);
+                // console.log(result);
 
 
                 // console.log(result);
@@ -609,11 +603,8 @@
                     if (result != null && result.length == number.length) {
 
 
-                        counter++;
-
-
-                        console.log('result: ' + result.length + ' == number: ' + number.length);
-                        console.log('length of wrapper ' + gameCont_headerWrapper.length);
+                        // console.log('result: ' + result.length + ' == number: ' + number.length);
+                        // console.log('length of wrapper ' + gameCont_headerWrapper.length);
 
                         let regex = /(<([^>]+)>)/ig;
                         for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
@@ -622,7 +613,7 @@
                         }
 
 
-                        console.log(result);
+                        // console.log(result);
 
                         // console.log(gameCont_headerWrapper[1][0][0]);
                         // console.log(gameCont_headerWrapper[1][1][0]);
@@ -647,8 +638,8 @@
 
                         // Wrap HTML Tags in array
                         for (let i = 0; i < gameCont_headerWrapper[index].length; i++) {
-                            console.log(i);
-                            console.log(gameCont_headerWrapper[result.length - 8][i][0]);
+                            // console.log(i);
+                            // console.log(gameCont_headerWrapper[result.length - 8][i][0]);
                             textWrapper[i] = gameCont_headerWrapper[result.length - 8][i][0] + result[i] + gameCont_headerWrapper[result.length - 8][i][1];
                             // console.log(textWrapper[i]);
                         }
@@ -658,8 +649,6 @@
 
 
                     }
-
-                    counter = 0;
                 });
 
                 // Remove HTML Tags from array
@@ -692,7 +681,7 @@
 
                 text_insert = convertArray_toString(textWrapper);
 
-                console.log(text_insert)
+                // console.log(text_insert);
 
 
                 // console.log(cropText_2);
@@ -707,8 +696,15 @@
 
                 // console.log(cleanedText);
 
-                editor.setData(cleanedText);
+
+                 // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
+
+                document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
+                editor.setData(addSpacesAroundText(cleanedText));
+                console.log(cleanedText);
             } else {
+                editor.setData(cleanedText);
+                console.log(cleanedText);
                 document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
                 document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
             }

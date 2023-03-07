@@ -10,6 +10,21 @@
     height: 460px;
     padding: 10px 20px;
     z-index: 1;
+    font-size: 0.85em;
+    line-height: 1.5em;
+}
+
+#ck5-textarea p {
+    font-size: 0.85rem;
+    line-height: 1.5em;
+}
+
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
+    background-color: rgb(255 255 255 / 70%);
+}
+
+.ck.ck-form__header {
+    background-color: #FFFFFF;
 }
 
 
@@ -62,6 +77,14 @@ div.ck-source-editing-area > textarea {
     font-family: monospace;
     color: #363636;
     background-color: #f3f3f3;
+}
+
+.ck-source-editing-area {
+    min-height: 500px;
+}
+
+.ck.ck-editor__editable[role='textbox'], .ck.editor[role='textbox'] {
+    max-height: 680px;
 }
 
 
