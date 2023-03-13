@@ -51,49 +51,59 @@
         </div>
     </overlay>
 
-    <div class="modal-box">
-        <div class="modal-container">
+    <div class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-top-spacer">
+                1
+            </div>
+            <div class="modal-container">
 
-            <div class="modal-caption-box">
-                <div class="modal-caption-container">
-                    <div class="modal-img"></div>
-                    <div class="modal-title">
-                        <h4>Welcome to your dashboard</h4>
+
+                <div class="modal-caption-box">
+                    <div class="modal-caption-container">
+                        <div class="modal-img"></div>
+                        <div class="modal-title">
+                            <h4>Welcome to your dashboard</h4>
+                        </div>
+                        <div class="modal-desc">
+                            <p>We're glad to have you on board. Here are some quick tips to get you up and running.</p>
+                        </div>
+                        <div class="modal-pagi"></div>
+                        <div class="modal-cta">
+                            <button class="btn btn-purple">Back</button>
+                            <button class="btn btn-purple">Next</button>
+                        </div>
                     </div>
-                    <div class="modal-desc">
-                        <p>We're glad to have you on board. Here are some quick tips to get you up and running.</p>
-                    </div>
-                    <div class="modal-pagi"></div>
-                    <div class="modal-cta">
-                        <button class="btn btn-purple">Back</button>
-                        <button class="btn btn-purple">Next</button>
+
+
+                </div>
+                <div class="modal-preview-box">
+                    <div class="modal-visual-src">
+                        <div class="promotion-tac-header epcot-text-color epcot-tac-arrow"><span>Terms
+                                and
+                                Conditions</span><i class="theme-up"></i></div><!---->
+                        <div id="promo-copy-fullterms" class="promotion-tac-body pc-txt epcot-text-color">
+                            <!-- PROMO FULL TERMS HERE -->
+                        </div>
+
                     </div>
                 </div>
-
 
             </div>
-            <div class="modal-preview-box">
-                <div class="modal-visual-src">
-                    <div class="promotion-tac-header epcot-text-color epcot-tac-arrow"><span>Terms
-                            and
-                            Conditions</span><i class="theme-up"></i></div><!---->
-                    <div id="promo-copy-fullterms" class="promotion-tac-body pc-txt epcot-text-color">
-                        <!-- PROMO FULL TERMS HERE -->
-                    </div>
-
-                </div>
+            <div class="modal-bot-spacer">
+                12
             </div>
         </div>
-
     </div>
 
-    <header>
+
+    <!-- <header>
         <div class="container-fluid">
             <div class="cover-wrapper">
                 CMS copy cleaner v1.4
             </div>
         </div>
-    </header>
+    </header> -->
 
     <main class="main-body">
         <div class="container-fluid">
@@ -111,7 +121,7 @@
                                         <div class="header-ctrl-txt">MPP</div>
                                     </div>
                                 </div>
-              
+
                             </div>
                         </div>
                     </div>
@@ -197,12 +207,16 @@
             [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', true],
             [/<strong>\s*<\/strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
             [/<\/strong>\s*<strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
-            [/\$10Bonus/g, '$10 Bonus', 'Sticky Text', true],
+            [/\$10Bonus Dollars/g, '$10 Bonus Dollars', 'Sticky Text', true],
+            [/\$5Bonus Dollars/g, '$5 Bonus Dollars', 'Sticky Text', true],
 
             // REMOVES TEXT DECORATION AND REFORMATS TEXT
             [/ am /g, ' AM ', 'Time lettercase', true], // converts pm to uppercase
             [/ pm /g, ' PM ', 'Time lettercase', true], // converts pm to uppercase
+            [/ pm./g, ' PM.', 'Time lettercase', true], // converts pm to uppercase
+            [/ am\./gi, ' AM.', 'Time lettercase', true], // converts pm to uppercase
             [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
+            [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
             [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
             [/\(as defined in the Terms of Service&nbsp;/g, '(as defined in the Terms of Service', 'Bold characters', false],
             [/\(<i>Link to Terms of Service<\/i>\)/g, '', '"Link to Terms Service" lines', true],
@@ -220,6 +234,9 @@
             [/<strong>My Account &gt; My Balance.<\/strong>/g, 'My Account &gt; My Balance.', 'Bold characters', false],
             [/<strong>My Account &gt; My Balance<\/strong>/g, 'My Account &gt; My Balance', 'Bold characters', false],
             [/<strong>Please review these Standard Promotional Terms and Conditions <\/strong>/g, 'Please review these Standard Promotional Terms and Conditions ', 'Bold characters', false],
+            [/<strong>Please review these Standard Promotional Terms by <\/strong>/g, 'Please review these Standard Promotional Terms by ', 'Bold characters', false],
+            [/<a href="https:\/\/adwords.google.com\/">/g, '', 'Bold characters', false],
+            [/&amp; Conditions.<\/a>/g, ' Conditions', 'Bold characters', false],
             [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
             [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
@@ -231,6 +248,8 @@
             [/<i>\(Link\)<\/i>/g, '', '', false],
             [/.<i>\).<\/i>\)/g, '.', '', false],
             [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
+            [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', false],
+            [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="https://help.borgataonline.com/en/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', '', false],
             [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', '', false],
             [/<strong>Standard Promotional Terms and Conditions<\/strong>/g, 'Standard Promotional Terms and Conditions', '', false],
             [/\(as defined in the <strong>Terms of Service<\/strong>\)/g, 'as defined in the Terms of Service', '', false],

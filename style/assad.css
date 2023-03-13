@@ -1,0 +1,681 @@
+@font-face {
+    font-family: 'GT America';
+    src: url('https://scmedia.itsfogo.com/$-$/f07be37fc17d42f2a13adf2e8a93099c.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GT America Standard Reg';
+    src: url('https://scmedia.itsfogo.com/$-$/49dacf8b03714d1786523a69b016379e.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GT America Extended Medium';
+    src: url('https://scmedia.itsfogo.com/$-$/2887fe4e4a7b43628f70186b85544df9.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GT America Extended';
+    src: url('https://scmedia.itsfogo.com/$-$/6b4fda50184f47899f2335ee8e0bc066.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'GT America Expanded Black';
+    src: url('https://scmedia.itsfogo.com/$-$/f127393d95aa43a1bc4d48034d2699c1.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    font-family: 'Roboto', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+}
+
+main {
+    min-height: 0;
+}
+
+img {
+    align-self: center;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.h-hide {
+    display: none;
+}
+
+/* label { margin: .25rem 0 !important; } */
+.l-wrapper {
+    margin: 0 auto;
+    max-width: 1024px;
+    width: 100%;
+}
+
+/* BUTTONS */
+.button {
+    font-family: "Roboto Condensed";
+    border-radius: 3px;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 400;
+    overflow: hidden;
+    padding: 6px 12px;
+    position: relative;
+    transition: all 0.15s ease-in-out;
+}
+
+.button-cta {
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+}
+
+.button-primary {
+    background: #bda871;
+    color: #000;
+    border: 1px solid #bda871;
+}
+
+.button-primary:hover {
+    background: #cdbd94;
+    border-color: #cdbd94;
+}
+
+.sticky-bar {
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 56px;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+/* SUBNAV */
+.lp-subnav {
+    background: #000;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem 0;
+}
+
+.subnav-link {
+    font-size: 1rem;
+    color: #bda871 !important;
+    font-weight: bold !important;
+    padding: 0 1rem;
+    align-self: center;
+}
+
+@media only screen and (max-width: 414px) {
+    .lp-subnav {
+        padding: 0;
+    }
+
+    .subnav-link {
+        font-size: 14px;
+    }
+}
+
+/* HERO */
+.hero {
+    background: url('https://scmedia.itsfogo.com/$-$/9474305b2572406ab549f5bc924a56c4.jpg') no-repeat center/cover #000;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    text-align: center;
+    padding: 6vw 0;
+}
+
+.hero-title {
+    font-family: "GT America Expanded Black";
+    color: #bda871;
+    font-size: 2.8vw;
+    margin-bottom: 1vw;
+}
+
+.hero-subtitle {
+    font-size: 1.8vw;
+    color: #fff;
+    font-weight: 300;
+}
+
+.hero-subtitle-2 {
+    font-family: "GT America Expanded Black";
+    text-transform: uppercase;
+    font-size: 1.8vw;
+    font-weight: 100;
+    color: #fff;
+}
+
+.hero-img {
+    width: 60%;
+    margin: 2vw auto;
+}
+
+.hero-container .button,
+.sticky-bar .button {
+    background: #02a55d;
+    border-color: #02a55d;
+    color: #fff !important;
+    border-radius: 20px;
+    font-size: initial;
+    margin: 0 auto;
+    font-family: 'GT America';
+    font-weight: bold;
+}
+
+.mobile-store {
+    padding-top: 2vw;
+}
+
+.mobile-store a {
+    margin: 0 20px;
+}
+
+/* STEPS */
+.steps {
+    color: #fff;
+    text-transform: uppercase;
+    background: #29292f;
+    padding: 1rem 0;
+}
+
+.steps-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.steps-item {
+    display: flex;
+}
+
+.steps-circle {
+    font-family: "Roboto", Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    color: #000;
+    background-color: #bda871;
+    min-width: 30px;
+    height: 30px;
+    font-size: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.steps-title {
+    font-family: "Roboto", Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.steps-copy {
+    font-family: 'Roboto Condensed', Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.steps-copy a,
+.steps-copy a:hover {
+    color: #bda871 !important;
+    font-weight: 600;
+}
+
+/* GEOGRAPHY */
+.geography {
+    padding: 1.5rem 10%;
+}
+
+.geo-title {
+    font-family: "GT America Expanded Black";
+    color: #bda871;
+    text-align: center;
+    font-size: 2.3vw;
+}
+
+.geo-body {
+    display: flex;
+    align-items: center;
+}
+
+.geo-body .body-content {
+    width: 50%;
+    margin: 40px 0 15px;
+    text-align: center;
+    color: #fff;
+}
+
+.geo-body .body-content a {
+    color: #bda871 !important;
+}
+
+.geo-body div:nth-child(1) img {
+    width: 60%;
+}
+
+.geo-body div:nth-child(2) p {
+    text-align: left;
+    font-size: 1.3vw;
+}
+
+.geo-body div:nth-child(2) p:nth-child(2) {
+    margin: 20px 0;
+}
+
+.geo-action {
+    text-align: left;
+}
+
+.geo-link {
+    color: #bda871;
+    font-weight: bold;
+}
+
+.geo-link {
+    display: flex;
+    align-items: center;
+}
+
+.geo-link a {
+    font-weight: bold !important;
+}
+
+.geo-action a .geo-link-icon:before {
+    position: relative;
+    content: '\276F';
+    color: #bda871;
+    font-size: 1rem;
+}
+
+.geo-action a .geo-link-icon {
+    margin-right: 20px;
+    padding: 3px 9px 3px 9px;
+    border: 2px solid #bda871;
+    border-radius: 50%;
+}
+
+/* SPORTSBOOK */
+.sportsbook {
+    color: #fff;
+    background: #29292f;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.sportsbook-title {
+    font-family: "GT America Expanded Black";
+    color: #bda871;
+    font-size: 2.3vw;
+}
+
+.sportsbook-body {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    padding: 3vw 0;
+}
+
+.sportsbook-body .item {
+    grid-column: span 2;
+}
+
+.sportsbook-body .item:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.sportsbook-body .item:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+.sportsbook-body .item .img-container {
+    width: auto;
+    height: 70px;
+    margin-bottom: 3vw;
+}
+
+.sportsbook-body .item .img-container img {
+    height: 80px;
+}
+
+.sportsbook-body .item .item-title {
+    color: #bda871;
+    font-weight: bold;
+    font-size: 1.3vw;
+}
+
+.sportsbook-body .item .item-copy {
+    text-transform: none;
+}
+
+/* FAQ */
+.faq {
+    padding: 3vw 0;
+}
+
+.faq a {
+    text-decoration: underline !important;
+}
+
+.faq h3 {
+    font-family: 'GT America Expanded Black';
+    padding: 0 10%;
+    color: #bda871;
+}
+
+.faq-container {
+    color: #fff;
+    border-bottom: 1px solid #bda871;
+    width: 80%;
+    margin: auto;
+}
+
+.faqs-title {
+    font-family: "GT America Expanded Black";
+    text-align: center;
+    color: #bda871;
+    font-size: 2.3vw;
+}
+
+.faq-title {
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    line-height: 2.6;
+    position: relative;
+    color: #fff;
+    font-family: "Roboto Condensed", Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.faq h3:not(:first-child) {
+    margin-top: 2vw;
+}
+
+.faq-title:after {
+    align-self: center;
+    content: '+';
+    display: block;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 50%;
+    padding: 5px 8px;
+    border: 1px solid #fff;
+}
+
+.faq-toggle:checked~.faq-content {
+    display: block;
+}
+
+.faq-toggle:checked~.faq-title:after {
+    content: '-';
+    padding: 5px 10px;
+}
+
+.faq-content {
+    font-family: "Roboto Condensed", Verdana, Arial, Helvetica, sans-serif;
+    display: none;
+    font-size: .8rem;
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+.faq-content>p>a {
+    color: #bda871;
+    font-family: "Roboto Condensed", Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+.faq-content a {
+    color: #fff !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .faq {
+        padding: 5vw 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .faq-title,
+    .faq-content p {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .faq h1 {
+        font-size: 3.5vw;
+    }
+
+    .faq h3,
+    .faq-title,
+    .faq-content p {
+        font-size: 3vw;
+    }
+}
+
+/* PROMOTE */
+.promote .hero-container {
+    padding: 5vw 0;
+}
+
+.promote .hero {
+    background: url('https://scmedia.itsfogo.com/$-$/1658b0c7f74c40d9b629facd9cb024a6.jpg') no-repeat center/cover #000;
+    border-top: 1px solid #bda871;
+    border-bottom: 1px solid #bda871;
+}
+
+@media only screen and (max-width: 1024px) {
+    .l-wrapper {
+        padding: 0 1rem;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .hero {
+        background: url('https://scmedia.itsfogo.com/$-$/6d5a97be62c344d6b33badcf60b51d9a.jpg') no-repeat top/cover #000;
+    }
+
+    /* optional */
+    .hero-container .button {
+        display: none;
+    }
+
+    .hero-container {
+        padding: 5vw 0;
+    }
+
+    .hero-title {
+        font-size: 2.5vw;
+    }
+
+    .hero-subtitle,
+    .sportsbook-title,
+    .news-title {
+        width: 100%;
+    }
+
+    .hero-img {
+        width: 60%;
+    }
+
+    .mobile-store {
+        padding: 0;
+    }
+
+    .mobile-store a {
+        margin: 0 10px;
+    }
+
+    .mobile-store a img {
+        width: 25%;
+    }
+
+    /* GEOGRAPHY */
+    .geo-body {
+        flex-direction: column;
+    }
+
+    .geo-body .body-content {
+        width: 100%;
+    }
+
+    .geo-body div:nth-child(1) img {
+        margin: -15% 0;
+    }
+
+    .geo-title,
+    .sportsbook-title,
+    .faqs-title {
+        font-size: 3.5vw;
+        margin-bottom: 1.5rem;
+    }
+
+    .geo-body div:nth-child(2) p {
+        font-size: 2.5vw;
+    }
+
+    .geo-body div:nth-child(2) p:nth-child(2) {
+        margin: 10px 0;
+    }
+
+    /* SPORTSBOOK */
+    .sportsbook {
+        padding: 3vw 10% 0 10%;
+    }
+
+    .sportsbook-body {
+        display: flex;
+        flex-direction: column;
+        padding: 5vw 0 5vw 0;
+    }
+
+    .sportsbook-body .item {
+        margin-bottom: 3vw;
+    }
+
+    .sportsbook-body .item .item-title {
+        font-size: 2.3vw;
+    }
+
+    .sportsbook-body .item .item-copy {
+        font-size: 2vw;
+    }
+
+    .item-content br {
+        display: none;
+    }
+
+    .lp-header {
+        position: fixed;
+        width: 100%;
+        z-index: 50;
+    }
+
+    .lp-main {
+        padding-top: 0;
+    }
+
+    .lp-footer {
+        padding: 0 0 66px;
+    }
+
+    .button-cta {
+        font-size: 1rem;
+    }
+
+    .steps {
+        padding: 0;
+    }
+
+    .steps-list {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 0;
+    }
+
+    .steps-item {
+        padding: 1rem 2%;
+        border-bottom: 1px solid #bda871;
+    }
+
+    .steps-item:last-child {
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .steps-title {
+        font-size: 1rem;
+    }
+
+    .steps-copy {
+        font-size: 0.75rem;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .geo-body div:nth-child(2) p {
+        font-size: 3vw;
+    }
+
+    .sportsbook-body {
+        padding-bottom: 0;
+    }
+
+    .sportsbook-body .item {
+        margin-bottom: 8vw;
+    }
+
+    .sportsbook-body .item .img-container {
+        margin-bottom: 0;
+    }
+
+    .sportsbook-body .item .item-title {
+        font-size: 3.5vw;
+    }
+
+    .sportsbook-body .item .item-copy {
+        font-size: 3vw;
+    }
+
+    .sportsbook-body .item .img-container img {
+        height: 60px;
+    }
+}
