@@ -16,6 +16,7 @@ body {
     width: 260px;
     background-color: #FFF;
     font-size: 14px;
+    float: left;
 }
 
 .side-nav__logo {
@@ -26,7 +27,14 @@ body {
 
 .side-nav__links {
     padding: 0 16px;
-    
+    height: calc(100vh - 83px);
+    overflow-y: auto;
+
+}
+
+.side-nav__links:hover {
+    /* overflow-y: auto; */
+
 }
 
 .side-nav__link-group {
@@ -63,21 +71,37 @@ body {
 
 .link-group__li:last-child {
     margin-bottom: 0;
+    margin-top: 5px;
 }
 
-.link-group__list-items .active, 
-.link-group__list-items .active i {
+.link-group__list-items .active {
     font-weight: 700;
-    color: #9275CA;
+    color: #673ab7;
     background-color: #EDE7F6;
     border-radius: 5px;
 }
 
 .link-group__li:hover {
-    font-weight: 700;
-    color: #9275CA;
+    color: #673ab7;
     background-color: #EDE7F6;
     border-radius: 5px;
+}
+
+.with__chevron-down a:hover,
+.with__chevron-up a:hover,
+.with__chevron-down:hover,
+.with__chevron-up:hover {
+    color: #673ab7;
+    cursor: pointer;
+}
+
+.with__chevron-up a,
+.with__chevron-down a {
+    display: block;
+}
+
+.side-nav__link-group a {
+    color: #121926;
 }
 
 #cms__side-nav i {
@@ -89,6 +113,72 @@ body {
     vertical-align: middle;
 }
 
+#cms__side-nav .ti-chevron-down,
+#cms__side-nav .ti-chevron-up {
+    float: right;
+    margin-right: 0;
+}
+
 #cms-logo {
     height: 35px;
+}
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #EDE7F6 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #EDE7F6;
+    border-radius: 6px;
+    border: 0px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #EDE7F6;
+}
+
+
+/* TOP NAV */
+
+#cms__top-nav {
+    background-color: #FFF;
+    height: 83px;
+    width: calc(100% - 260px);
+    float: right;
+}
+
+
+/* MAIN BODY */
+
+body,
+html {
+    height: 100%;
+}
+
+#cms__main-body {
+    background-color: #FFF;
+    width: calc(100% - 260px);
+    height: calc(100% - 83px);
+    float: right;
+}
+
+#cms__main-content {
+    background-color: #eef2f6;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+    margin-right: 20px;
 }
