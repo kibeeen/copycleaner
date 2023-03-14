@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
+        
     <link rel="stylesheet" type="text/css" href="style/ckeditor.css">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="style/style-cms.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
@@ -136,7 +136,7 @@
                     <div class="link-group__list-items">
                         <ul class="link-group__ul">
                             <a href="#">
-                                <li class="link-group__li">
+                                <li class="link-group__li active">
                                     <i class="ti ti-wash-machine"></i>
                                     HTML Copy Cleaner
                                 </li>
@@ -226,12 +226,16 @@
                         <h2 class="card-title">
                             HTML Copy Cleaner
                         </h2>
+                        <div class="card-cta__container">
+                            <div class="card-cta">
+                                <button class="btn-cms btn-cms-outline me-2" onclick="copyToClipboard()"><i class="ti ti-copy"></i></button>
+                                <button class="btn-cms btn-cms-primary" onclick="cleanHTML()" tabindex="0"><i class="me-2 ti ti-storm"></i>Power Clean</button>
+                            </div>
+                        </div>
+                        
                     </div>
                     <hr class="cms-card__hr">
-                    <div class="card-desc">
-                        <button class="btn-cms btn-cms-outline me-2" onclick="copyToClipboard()"><i class="ti ti-copy"></i></button>
-                        <button class="btn-cms btn-cms-primary" onclick="cleanHTML()" tabindex="0"><i class="me-2 ti ti-brand-redux"></i>Power Clean</button>
-                    </div>
+                    
                     <div class="cms-card__body">
                         <!-- CK5 Editor -->
                         <div class="editor"></div>
@@ -240,7 +244,7 @@
                 </div>
 
 
-                <div class="cms-card">
+                <div id="cms__copy-cleaner-preview" class="cms-card">
                     <div class="cms-card__header">
                         <h2 class="card-title">
                             Page Previews
