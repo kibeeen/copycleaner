@@ -343,3 +343,266 @@ body[data-revision-history='true'] .ck.ck-pagination-view-line::after {
 	right: unset !important;
 }
 
+
+
+
+/* KEVIN */
+
+
+.controls {
+    margin: 0 auto;
+}
+
+
+/* CK5 Text Area */
+
+#ck5-textarea {
+    height: 100%;
+    padding: 10px 20px;
+    z-index: 1;
+    font-size: 0.85em;
+    line-height: 1.5em;
+}
+
+#ck5-textarea p {
+    font-size: 0.85rem;
+    line-height: 1.5em;
+}
+
+#ck5-textarea a {
+    color: #3779eb;
+}
+
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
+    background-color: rgb(255 255 255 / 70%);
+}
+
+.ck.ck-form__header {
+    background-color: #FFFFFF;
+}
+
+
+
+.raw-text__wrapper, .cleaned-text__wrapper {
+    padding: 20px;
+}
+
+.raw-text__wrapper {
+    background-color: #050505;
+   max-width: 800px;
+}
+
+.mpp-simulator__wrapper {
+    padding: 0 20px;
+    max-width: 780px !important;
+    margin: 0 auto;
+}
+
+
+#cleanedHTML__textarea {
+    overflow: auto;
+    padding: 10px;
+    margin: 20px 0;
+    color: #050505;
+    background-color: white;
+    border: 1px solid #757575;
+    height: 442px;
+    width: 100%;
+    font-size: 0.8em;
+ 
+}
+
+#copy-code {
+    float: right;
+}
+
+textarea:focus-visible {
+    border: 1px solid #0d65ff;
+}
+
+
+div.ck-source-editing-area > textarea {
+    top: 0;
+    left: 0;
+    overflow: auto;
+    height: 600px;
+    font-size: 0.85em;
+    line-height: 1.25em;
+    font-family: monospace;
+    color: #363636;
+    background-color: #f3f3f3;
+}
+
+.ck-source-editing-area {
+    min-height: 500px;
+}
+
+.ck.ck-editor__editable[role='textbox'], .ck.editor[role='textbox'] {
+    max-height: 680px;
+}
+
+
+.cover-wrapper {
+    /* height: 188px; */
+}
+
+.main-body {
+    background-color: #F5F5F5;
+}
+
+#overlay-loading {
+    background-color: hsla(216, 98%, 52%, 0.2);
+    /* background-color: rgb(0, 163, 91, 20%);
+    background-color: hwb(43 44% 26% / 0.3); */
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    
+}
+
+
+.vn-profile-img .profile-img-width {
+    max-width: 100%;
+    width: 100%;
+}
+
+
+
+
+/* MODAL */
+
+html, body {
+    height: 100%;
+    min-height: 100% !important;
+}
+
+.modal-overlay {
+    background-color: rgb(0 0 0 / 60%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
+}
+
+.modal-box {
+    position: absolute;
+    width: calc(100vw - 600px);
+    height: calc(100vh - 250px);
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+    z-index: 3;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0px 0px 0px 1px rgb(0 0 0 / 5%), 0px 4px 20px rgb(0 0 0 / 15%);
+}
+
+.modal-container {
+    border-radius: 50px;
+    position: relative;
+}
+
+.modal-caption-box {
+    font-family: 'Inter';
+    width: 35%;
+    height: 100%;
+    background-color: #fff;
+    float: left;
+    padding: 20px 50px;
+}
+
+.modal-caption-box h1,
+.modal-caption-box h2,
+.modal-caption-box h3,
+.modal-caption-box h4,
+.modal-caption-box h5,
+.modal-caption-box h6 {
+    font-family: 'Inter';
+    font-weight: 500;
+    color: #181E2A;
+}
+
+.modal-caption-box p {
+    font-size: 16px;
+    line-height: 1.425rem;
+    color: #737884;
+}
+
+.modal-preview-box {
+    overflow: auto;
+    width: 65%;
+    height: 100%;
+    padding: 20px 7.5%;
+    background-color: #050505;
+  
+}
+
+.modal-top-spacer, .modal-bot-spacer {
+    background-color: #fff;
+}
+
+.modal-top-spacer {
+    border-radius: 10px 0 0 0;
+    padding: 10px 20px;
+    height: 4em;
+}
+
+.modal-bot-spacer {
+    border-radius: 0 0 0 10px;
+    padding: 10px 20px;
+    height: 3em;
+}
+
+.modal-container {
+    height: 100%;
+}
+
+.modal-caption-container {
+    position: relative;
+}
+
+.modal-visual-src {
+    
+}
+
+.promo-copy-fullterms {
+    background: #050505;
+}
+
+.btn-purple {
+    background-color: #7E55D7;
+    color: #fff;
+    padding: 5px 40px;
+    border-radius: 5px;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  /* * {
+    scrollbar-width: auto;
+    scrollbar-color: #ffffff #ffffff36;
+  } */
+
+  /* Chrome, Edge, and Safari */
+  /* *::-webkit-scrollbar {
+    width: 10px;
+    margin-top: 50px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #636363;
+    border: unset;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 6px none #ffffff;
+  } */

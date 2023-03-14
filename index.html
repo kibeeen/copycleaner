@@ -264,12 +264,15 @@
 
             // ADDING LINK TO TEXT
             [/<strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb<i>\).<\/i> <\/li>/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
+            [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true], // wrap in <a> tag
             [/<strong>here;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\).<\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-            [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
-            [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
-            [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true],
+            [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true], // wrap in <a> tag
+            [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
+            [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
+            [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
+            [/\[LINK: Please create link to loyalty page. Example - <a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty">CLICK HERE<\/a>\]./gi, '<a href="!!M2.Portal/mobileportal/loyalty">here</a>.', 'Loyalty Page Link', true],
+            [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Promo Offers Link', true],
+            [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Promo Offers Link', true],
             [/<i>\).<\/i>\)/g, '', '', false],
 
 
@@ -412,14 +415,13 @@
         var cleanedText = null;
 
 
-        function addSpacesAroundText(str) {
-            const regexes = [/Bonus Dollars/, /FREEPLAY®/];
+        function addSpacesBeforeText(str) {
+            const regexes = [/(\S+)Bonus Dollars/, /(\S+)FREEPLAY®/];
             let result = str;
             regexes.forEach(regex => {
-                const re = new RegExp(`(\\S*)(${regex.source})(\\S*)`, 'g');
-                result = result.replace(re, '$1 $2 $3');
+                const re = new RegExp(regex.source, 'g');
+                result = result.replace(re, '$1 $2');
             });
-
             return result;
         }
 
@@ -492,7 +494,7 @@
 
             //    const newCleanedText = cleanedText;
 
-            const newCleanedText = addSpacesAroundText(cleanedText) // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
+            const newCleanedText = addSpacesBeforeText(cleanedText) // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
             // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
             // console.log(cleanedText)
             indentFix(newCleanedText);
@@ -696,13 +698,13 @@
                 // console.log(cleanedText);
 
 
-                // adds spaces around FREEPLAY, BONUS DOLLARS, etc..
+                // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
 
                 document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
-                editor.setData(addSpacesAroundText(cleanedText));
+                editor.setData(addSpacesBeforeText(cleanedText));
                 console.log(cleanedText);
             } else {
-                editor.setData(cleanedText);
+                editor.setData(addSpacesBeforeText(cleanedText));
                 console.log(cleanedText);
                 document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
                 document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
