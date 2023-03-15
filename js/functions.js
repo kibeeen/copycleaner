@@ -10,6 +10,7 @@ const removables = [
     [/<br>/g, ' ', '<br> tags', true],
     [/<\/br>/g, ' ', '<br> tags', true],
     [/< \/br>/g, ' ', '<br> tags', true],
+    [/<p>&nbsp;<\/p>/g, '', '<br> tags', true],
     [/<span style="color:black;">/g, '', 'Span tags', false],
     [/<span style="color:#202124;">/g, '', 'Span tags', false],
     [/<span style="color:#242424;">/g, '', 'Span tags', false],
@@ -31,6 +32,24 @@ const removables = [
     [/<\/strong>\s*<strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
     [/\$10Bonus Dollars/g, '$10 Bonus Dollars', 'Sticky Text', true],
     [/\$5Bonus Dollars/g, '$5 Bonus Dollars', 'Sticky Text', true],
+    [/1Bonus Dollars/g, '1 Bonus Dollars', 'Sticky Text', true],
+    [/2Bonus Dollars/g, '2 Bonus Dollars', 'Sticky Text', true],
+    [/3Bonus Dollars/g, '3 Bonus Dollars', 'Sticky Text', true],
+    [/4Bonus Dollars/g, '4 Bonus Dollars', 'Sticky Text', true],
+    [/6Bonus Dollars/g, '6 Bonus Dollars', 'Sticky Text', true],
+    [/7Bonus Dollars/g, '7 Bonus Dollars', 'Sticky Text', true],
+    [/8Bonus Dollars/g, '8 Bonus Dollars', 'Sticky Text', true],
+    [/9Bonus Dollars/g, '9 Bonus Dollars', 'Sticky Text', true],
+    [/0FREEPLAY®/g, '0 FREEPLAY®', 'Sticky Text', true],
+    [/1FREEPLAY®/g, '1 FREEPLAY®', 'Sticky Text', true],
+    [/2FREEPLAY®/g, '2 FREEPLAY®', 'Sticky Text', true],
+    [/3FREEPLAY®/g, '3 FREEPLAY®', 'Sticky Text', true],
+    [/4FREEPLAY®/g, '4 FREEPLAY®', 'Sticky Text', true],
+    [/5FREEPLAY®/g, '5 FREEPLAY®', 'Sticky Text', true],
+    [/6FREEPLAY®/g, '6 FREEPLAY®', 'Sticky Text', true],
+    [/7FREEPLAY®/g, '7 FREEPLAY®', 'Sticky Text', true],
+    [/8FREEPLAY®/g, '8 FREEPLAY®', 'Sticky Text', true],
+    [/9FREEPLAY®/g, '9 FREEPLAY®', 'Sticky Text', true],
 
     // REMOVES TEXT DECORATION AND REFORMATS TEXT
     [/ am /g, ' AM ', 'Time lettercase', true], // converts pm to uppercase
@@ -61,8 +80,9 @@ const removables = [
     [/&amp; Conditions.<\/a>/g, ' Conditions', 'Bold characters', false],
     [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
     [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
-    [/<strong>DISCLAIMER<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-    [/<strong>DISCLAIMER:<\/strong>:/g, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
+    [/<strong>DISCLAIMER<\/strong>:/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
+    [/<strong>DISCLAIMER:<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
+    [/<strong>DISCLAIMER<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
     [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
     [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
     [/\(<i>Link<\/i>\) /g, '', '', false],
@@ -144,6 +164,7 @@ const removables = [
 
 const gameCont_headerWrapper = [];
 
+
 gameCont_headerWrapper[0] = [
     ['<li><strong>', '</strong><ul>'],
     ['<li>', '<ul>'],
@@ -166,6 +187,18 @@ gameCont_headerWrapper[1] = [
     ['<li>', '</li>'],
     ['<li>', '<ul>'],
     ['<li>', '</li></ul></li></ul></li></ul></li></ul>'],
+];
+
+const gameCont_headerWrapper_p = [];
+
+gameCont_headerWrapper_p[0] = [
+    ['<ul><li>', '</li>'],
+    ['<li>', '</li>'],
+    ['<li>', '</li>'],
+    ['<li>', '</li>'],
+    ['<li>', '</li>'],
+    ['<li>', '</li>'],
+    ['<li>', '</li></ul>'],
 ];
 
 
@@ -237,15 +270,15 @@ target.addEventListener('copy', function () {
 var cleanedText = null;
 
 
-function addSpacesBeforeText(str) {
-    const regexes = [/(\S+)Bonus Dollars/, /(\S+)FREEPLAY®/];
-    let result = str;
-    regexes.forEach(regex => {
-        const re = new RegExp(regex.source, 'g');
-        result = result.replace(re, '$1 $2');
-    });
-    return result;
-}
+// function addSpacesBeforeText(str) {
+//     const regexes = [/(\S+)Bonus Dollars/, /(\S+)FREEPLAY®/];
+//     let result = str;
+//     regexes.forEach(regex => {
+//         const re = new RegExp(regex.source, 'g');
+//         result = result.replace(re, '$1 $2');
+//     });
+//     return result;
+// }
 
 function removeFigureDivTags(inputString) {
     const regex = /(<figure.*?>|<\/figure>|<svg.*?>[\s\S]*?(?:(?=<\/svg>)|<\/svg>)|<div.*?>)[\s\S]*?(?!(?:[^<]+>|[^>]+<\/table>))(?:(?=<\/table>)|<\/table>)/g;
@@ -281,7 +314,6 @@ const cleanHTML = () => {
 
     isCopied();
 
-
     let rawText = editor.getData('ck5-textarea');
     // let rawText = document.getElementById('ck5-textarea').innerHTML;
     rawText = removeFigureDivTags(rawText);
@@ -316,7 +348,7 @@ const cleanHTML = () => {
 
     //    const newCleanedText = cleanedText;
 
-    const newCleanedText = addSpacesBeforeText(cleanedText) // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
+    const newCleanedText = cleanedText // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
     // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
     // console.log(cleanedText)
     indentFix(newCleanedText);
@@ -362,22 +394,25 @@ const indentFix = (newCleanedText) => {
     // console.log(str);
     // console.log(regexp_gameContributionHeader);
 
-    let getStartIndex = '<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING';
+    let getStartIndex = '<li><strong>GAME CONTRIBUTIONS TOWARD';
+    // let getStartIndex = ['<li><strong>GAME CONTRIBUTIONS TOWARD BONUS WAGERING','</p><ul><li>The percentage of your wager that counts toward your wagering requirement'];
+
     let getEndIndex = '<p><strong>Order of Funds Used for Wagering:</strong>';
     let matchesStartIndex = [...str.matchAll(getStartIndex)];
     let matchesEndIndex = [...str.matchAll(getEndIndex)];
+
+    console.log(matchesStartIndex);
     let startIndexNumber = 0;
     let endIndexNumber = 0;
 
     // CHECKS IF THE TERMS HAVE THE "GAME CONTRIBUTIONS HEADER" 
 
+    matchesStartIndex
 
     if (matchesStartIndex != '') {
         // alert(matchesStartIndex);
         matchesStartIndex.forEach((matchesStart) => {
             startIndexNumber = matchesStart.index;
-
-
             // console.log("match found at " + matchesStart.index);
             // console.log(tempTextStorage.startIndexNumber);
         })
@@ -395,26 +430,7 @@ const indentFix = (newCleanedText) => {
 
         gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
 
-        // console.log(gameContributions_text);
-
         let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
-        // let result = gameContributions_text.match(/<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/li>|<li>((?:(?!<\/?(ul|li)>)[\s\S])*)<\/ul>/g);
-
-        // console.log(result);
-
-
-        // console.log(result);
-        // console.log('array length ' + gameCont_headerWrapper[0].length);
-
-        // for(let i = 0; i < gameCont_headerWrapper[i].length; i++) {
-        //     console.log('true');
-        //     console.log(gameCont_headerWrapper[i].length);
-        //     console.log(result.length);
-        //     if(gameCont_headerWrapper[i].length == result.length) {
-
-        //     }
-        // }
-
 
 
 
@@ -474,28 +490,12 @@ const indentFix = (newCleanedText) => {
             }
         });
 
-        // Remove HTML Tags from array
-
-
-
 
         // textWrapper = convertArray_toString(textWrapper);
         const tempCleanedText_1 = newCleanedText;
         const tempCleanedText_2 = newCleanedText;
 
         // console.log(endIndexNumber);
-
-        // checker -- check if
-        let x = '';
-        for (let i = 0; i < 20; i++) {
-            x += tempTextStorage[endIndexNumber + i];
-        }
-        // console.log(x);
-
-        let y = '';
-        for (let y = 20; y < 0; y--) {
-            y += tempTextStorage[startIndexNumber + y];
-        }
         // console.log(tempTextStorage[startIndexNumber-1]);
         // console.log(tempCleanedText_1.length);
 
@@ -523,11 +523,11 @@ const indentFix = (newCleanedText) => {
         // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
 
         // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
-        editor.setData(addSpacesBeforeText(cleanedText));
-        console.log(cleanedText);
+        editor.setData(cleanedText);
+        // console.log(cleanedText);
     } else {
-        editor.setData(addSpacesBeforeText(cleanedText));
-        console.log(cleanedText);
+        editor.setData(cleanedText);
+        // console.log(cleanedText);
         // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
         // document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
     }
