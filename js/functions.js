@@ -1,5 +1,7 @@
 
 
+
+
 const removables = [
     // [/error tags/g, 'replacement strings','Error Name','Is this a QA error? -> true or false']
 
@@ -10,7 +12,7 @@ const removables = [
     [/<br>/g, ' ', '<br> tags', true],
     [/<\/br>/g, ' ', '<br> tags', true],
     [/< \/br>/g, ' ', '<br> tags', true],
-    [/<p>&nbsp;<\/p>/g, '', '<br> tags', true],
+    [/<p>&nbsp;<\/p>/g, '', 'Extra line spacing', false],
     [/<span style="color:black;">/g, '', 'Span tags', false],
     [/<span style="color:#202124;">/g, '', 'Span tags', false],
     [/<span style="color:#242424;">/g, '', 'Span tags', false],
@@ -21,13 +23,13 @@ const removables = [
     [/<span style="color:#242424;">/g, '', 'Span tags', false],
     [/<span style="color:#404040;">/g, '', 'Span tags', false],
     [/<\/span>/g, '', 'Span tags', false],
-    [/<p><\/p>/g, '', 'Extra <p> tags', true],
-    [/<p><\/p>/g, '', 'Extra <p> tags', true],
-    [/<p> <\/p>/g, '', 'Extra <p> tags', true],
-    [/<p>\s*<\/p>/g, '', 'Extra <p> tags', true],
-    [/<p><\/p><p>/g, '', 'Extra <p> tags', true],
-    [/<\/ul><p> <\/p><p>/g, '', 'Extra <p> tags', true],
-    [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', true],
+    [/<p><\/p>/g, '', 'Extra <p> tags', false],
+    [/<p><\/p>/g, '', 'Extra <p> tags', false],
+    [/<p> <\/p>/g, '', 'Extra <p> tags', false],
+    [/<p>\s*<\/p>/g, '', 'Extra <p> tags', false],
+    [/<p><\/p><p>/g, '', 'Extra <p> tags', false],
+    [/<\/ul><p> <\/p><p>/g, '', 'Extra <p> tags', false],
+    [/<br data-cke-filler="true">/g, '', 'Extra <p> tags', false],
     [/<strong>\s*<\/strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
     [/<\/strong>\s*<strong>/g, ' ', 'Extra <strong> tags', false], // removes extra strong
     [/\$10Bonus Dollars/g, '$10 Bonus Dollars', 'Sticky Text', true],
@@ -50,12 +52,22 @@ const removables = [
     [/7FREEPLAY®/g, '7 FREEPLAY®', 'Sticky Text', true],
     [/8FREEPLAY®/g, '8 FREEPLAY®', 'Sticky Text', true],
     [/9FREEPLAY®/g, '9 FREEPLAY®', 'Sticky Text', true],
+    [/0Free Spins/g, '0 Free Spins', 'Sticky Text', true],
+    [/1Free Spins/g, '1 Free Spins', 'Sticky Text', true],
+    [/2Free Spins/g, '2 Free Spins', 'Sticky Text', true],
+    [/3Free Spins/g, '3 Free Spins', 'Sticky Text', true],
+    [/4Free Spins/g, '4 Free Spins', 'Sticky Text', true],
+    [/5Free Spins/g, '5 Free Spins', 'Sticky Text', true],
+    [/6Free Spins/g, '6 Free Spins', 'Sticky Text', true],
+    [/7Free Spins/g, '7 Free Spins', 'Sticky Text', true],
+    [/8Free Spins/g, '8 Free Spins', 'Sticky Text', true],
+    [/9Free Spins/g, '9 Free Spins', 'Sticky Text', true],
 
     // REMOVES TEXT DECORATION AND REFORMATS TEXT
-    [/ am /g, ' AM ', 'Time lettercase', true], // converts pm to uppercase
-    [/ pm /g, ' PM ', 'Time lettercase', true], // converts pm to uppercase
-    [/ pm./g, ' PM.', 'Time lettercase', true], // converts pm to uppercase
-    [/ am\./gi, ' AM.', 'Time lettercase', true], // converts pm to uppercase
+    [/ am /g, ' AM ', 'AM Time lettercase', true], // converts pm to uppercase
+    [/ pm /g, ' PM ', 'PM Time lettercase', true], // converts pm to uppercase
+    [/ pm./g, ' PM.', 'PM Time lettercase', true], // converts pm to uppercase
+    [/ am\./gi, ' AM.', 'AM Time lettercase', true], // converts pm to uppercase
     [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
     [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
     [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
@@ -319,7 +331,8 @@ const cleanHTML = () => {
     // let rawText = document.getElementById('ck5-textarea').innerHTML;
     rawText = removeFigureDivTags(rawText);
     let count = 0;
-    let errorCatcher = [];
+
+    let errorCatcher = [[]];
     let totalErrors = 0;
 
     for (let i = 0; i < removables.length; i++) {
@@ -329,28 +342,40 @@ const cleanHTML = () => {
         const replacements = removables[i][1];
         const matches = rawText.match(regex);
 
-        errorCatcher[[i, 0]] = regex;
-        errorCatcher[[i, 2]] = errorName;
-        errorCatcher[[i, 3]] = qaItem;
+        let counter = 0;
 
         if (matches) {
-            count += matches.length;
-            totalErrors += count;
-            errorCatcher[[i, 1]] = count;
+            counter += 1;
+
+            errorCatcher[counter, 1] = count;
+
+            if (qaItem == true) {
+                errorCatcher.push([errorName, matches.length, qaItem, regex]);
+                count += matches.length;
+                totalErrors += count;
+            }
+
+            console.log(matches);
+
+
         }
 
         rawText = rawText.replace(regex, replacements);
 
         count = 0;
+        counter = 0;
 
     }
 
+
+    console.log(errorCatcher);
+    console.log(totalErrors);
     cleanedText = rawText;
 
     //    const newCleanedText = cleanedText;
 
     const newCleanedText = cleanedText // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
-    
+
     // console.log(cleanedText)
     document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
     indentFix(newCleanedText);
@@ -403,13 +428,13 @@ const indentFix = (newCleanedText) => {
     let matchesStartIndex = [...str.matchAll(getStartIndex)];
     let matchesEndIndex = [...str.matchAll(getEndIndex)];
 
-    console.log(matchesStartIndex);
+    // console.log(matchesStartIndex);
     let startIndexNumber = 0;
     let endIndexNumber = 0;
 
     // CHECKS IF THE TERMS HAVE THE "GAME CONTRIBUTIONS HEADER" 
 
-    matchesStartIndex
+
 
     if (matchesStartIndex != '') {
         // alert(matchesStartIndex);
@@ -433,6 +458,8 @@ const indentFix = (newCleanedText) => {
         gameContributions_text = cleanedText.substring(startIndexNumber, endIndexNumber);
 
         let result = gameContributions_text.match(/<li>(.*?)<(ul|\/li)>/g);
+
+
 
 
 
@@ -560,6 +587,7 @@ const extractDataFromCopy = () => {
 
         let start = [...copy.matchAll(search_start_text)];
         let end = [...copy.matchAll(search_end_text)];
+
 
         let start_index_length = settings[i].startIndexText.length;
         let end_index_length = settings[i].endIndexText.length;
