@@ -89,6 +89,7 @@ const removables = [
     [/\(<i>Link<\/i>\)/g, '', '', false],
     [/<i>\(Link\)<\/i>/g, '', '', false],
     [/.<i>\).<\/i>\)/g, '.', '', false],
+    [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', '', false],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
     [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', false],
     [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="https://help.borgataonline.com/en/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', '', false],
@@ -349,8 +350,9 @@ const cleanHTML = () => {
     //    const newCleanedText = cleanedText;
 
     const newCleanedText = cleanedText // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
-    // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
+    
     // console.log(cleanedText)
+    document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
     indentFix(newCleanedText);
 }
 
@@ -524,9 +526,11 @@ const indentFix = (newCleanedText) => {
 
         // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
         editor.setData(cleanedText);
+        document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
         // console.log(cleanedText);
     } else {
         editor.setData(cleanedText);
+        document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
         // console.log(cleanedText);
         // document.getElementById('cleanedHTML__textarea').innerHTML = cleanedText;
         // document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
