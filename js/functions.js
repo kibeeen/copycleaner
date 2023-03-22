@@ -8,6 +8,8 @@ const removables = [
     // REMOVES UNNECESSARY TAGS AND FIX SPACING ISSUES
     [/​/g, '', 'Half spaces', true],
     [/ /g, ' ', 'Narrow spaces', true],
+    [/<i>&nbsp;<\/i>/g, ' ', 'Sticky Text', true],
+    [/<p><strong>&nbsp;<\/strong><\/p>/g, '', 'Sticky Text', false],
     [/&nbsp;/g, ' ', '&nbsp; tags', true],
     [/<br>/g, ' ', '<br> tags', true],
     [/<\/br>/g, ' ', '<br> tags', true],
@@ -66,7 +68,9 @@ const removables = [
     // REMOVES TEXT DECORATION AND REFORMATS TEXT
     [/ am /g, ' AM ', 'AM Time lettercase', true], // converts pm to uppercase
     [/ pm /g, ' PM ', 'PM Time lettercase', true], // converts pm to uppercase
-    [/ pm./g, ' PM.', 'PM Time lettercase', true], // converts pm to uppercase
+    [/ am,/gi, ' AM,', 'AM Time lettercase', true], // converts pm to uppercase
+    [/ pm,/gi, ' PM,', 'PM Time lettercase', true], // converts pm to uppercase
+    [/ pm\./g, ' PM.', 'PM Time lettercase', true], // converts pm to uppercase
     [/ am\./gi, ' AM.', 'AM Time lettercase', true], // converts pm to uppercase
     [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
     [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
@@ -126,6 +130,7 @@ const removables = [
     [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
     [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
     [/\[LINK: Please create link to loyalty page. Example - <a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty">CLICK HERE<\/a>\]./gi, '<a href="!!M2.Portal/mobileportal/loyalty">here</a>.', 'Loyalty Page Link', true],
+    [/ \[LINK: Please create link to loyalty page. Example -<a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty"> CLICK HERE<\/a>\]/gi, ' <a href="!!M2.Portal/mobileportal/loyalty">here</a>', 'Loyalty Page Link', true],
     [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Promo Offers Link', true],
     [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Promo Offers Link', true],
     [/<i>\).<\/i>\)/g, '', '', false],
@@ -352,7 +357,7 @@ const cleanHTML = () => {
             if (qaItem == true) {
                 errorCatcher.push([errorName, matches.length, qaItem, regex]);
                 count += matches.length;
-                totalErrors += count;
+                totalErrors += count
             }
 
             console.log(matches);
@@ -634,7 +639,7 @@ function copyToClipboard() {
     navigator.clipboard.writeText(copyText);
 
     // Alert the copied text
-    alert("Copied the text: " + copyText);
+    alert("Copied Terms and Conditions");
 }
 
 
