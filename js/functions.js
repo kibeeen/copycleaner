@@ -134,6 +134,7 @@ const removables = [
     [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
     [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Linked to Promo Offers', true],
     [/<i>\).<\/i>\)/g, '', '', false],
+    [/<i>\).<\/i>/g, '.', '', false],
 
 
 
