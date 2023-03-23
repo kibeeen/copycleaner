@@ -528,7 +528,7 @@ html, body {
 
 .modal-box {
     position: relative;
-    width: 70%;
+    width: 60%;
     height: 80%;
     z-index: 3;
     display: flex;
@@ -643,7 +643,7 @@ html, body {
     position: absolute;
     top: 0;
     right: 0;
-
+    font-size: 1.5em;
 }
 
 #promo-copy-fullterms {

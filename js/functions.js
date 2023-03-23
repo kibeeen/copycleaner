@@ -76,12 +76,12 @@ const removables = [
     [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
     [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
     [/\(as defined in the Terms of Service&nbsp;/g, '(as defined in the Terms of Service', 'Bold characters', false],
-    [/\(<i>Link to Terms of Service<\/i>\)/g, '', '"Link to Terms Service" lines', true],
+    [/\(<i>Link to Terms of Service<\/i>\)/g, '', 'Link to Terms Service lines', true],
     [/<strong> by <\/strong>/g, ' by ', 'Bold characters', false],
-    [/<i>\(Link to Terms of Service\)<\/i> /g, '', '"Link to Terms Service" lines', true],
-    [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', '"Link to Terms Service" lines', true],
-    [/\(Link to Terms of Service\)/g, '', '"Link to Terms Service" lines', true],
-    [/<i>\(Link to Standard Promo TCs\)<\/i>/g, '', '"Link to Terms Service" lines', true],
+    [/<i>\(Link to Terms of Service\)<\/i> /g, '', 'Link to Terms Service lines', true],
+    [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', 'Link to Terms Service lines', true],
+    [/\(Link to Terms of Service\)/g, '', 'Link to Terms Service lines', true],
+    [/<i>\(Link to Standard Promo TCs\)<\/i>/g, '', 'Bold characters', false],
     [/<i>\(Link to Standard Promo TCs\)<\/i><strong> by <\/strong>/g, 'by ', 'Bold characters', false],
     [/<strong> by <\/strong>/g, ' by ', 'Bold characters', false],
     [/\(<i>Link<\/i>\)/g, '', '', false],
@@ -96,9 +96,9 @@ const removables = [
     [/&amp; Conditions.<\/a>/g, ' Conditions', 'Bold characters', false],
     [/TOWARD BONUS WAGERING: <\/strong>/g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
     [/TOWARD BONUS WAGERING<\/strong> /g, 'TOWARD BONUS WAGERING:</strong>', 'Extra white spaces', false],
-    [/<strong>DISCLAIMER<\/strong>:/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-    [/<strong>DISCLAIMER:<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
-    [/<strong>DISCLAIMER<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Fixed Capitalization', false],
+    [/<strong>DISCLAIMER<\/strong>:/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
+    [/<strong>DISCLAIMER:<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
+    [/<strong>DISCLAIMER<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
     [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
     [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
     [/\(<i>Link<\/i>\) /g, '', '', false],
@@ -107,9 +107,9 @@ const removables = [
     [/.<i>\).<\/i>\)/g, '.', '', false],
     [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', '', false],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
-    [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', false],
-    [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="https://help.borgataonline.com/en/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', '', false],
-    [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', '', false],
+    [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
+    [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="https://help.borgataonline.com/en/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', 'Linked to Opt Out Bonus', true],
+    [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', 'Cleansed My Account: My Balance', false],
     [/<strong>Standard Promotional Terms and Conditions<\/strong>/g, 'Standard Promotional Terms and Conditions', '', false],
     [/\(as defined in the <strong>Terms of Service<\/strong>\)/g, 'as defined in the Terms of Service', '', false],
     [/<strong>Standard Promotional Terms and Conditions <\/strong> by signing/g, 'Standard Promotional Terms and Conditions by signing', '', false],
@@ -122,17 +122,17 @@ const removables = [
 
 
     // ADDING LINK TO TEXT
-    [/<strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb<i>\).<\/i> <\/li>/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-    [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true], // wrap in <a> tag
-    [/<strong>here;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\).<\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Extra <p> tags', true], // wrap in <a> tag
-    [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true], // wrap in <a> tag
-    [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
-    [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
-    [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Extra <p> tags', true],
-    [/\[LINK: Please create link to loyalty page. Example - <a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty">CLICK HERE<\/a>\]./gi, '<a href="!!M2.Portal/mobileportal/loyalty">here</a>.', 'Loyalty Page Link', true],
-    [/ \[LINK: Please create link to loyalty page. Example -<a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty"> CLICK HERE<\/a>\]/gi, ' <a href="!!M2.Portal/mobileportal/loyalty">here</a>', 'Loyalty Page Link', true],
-    [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Promo Offers Link', true],
-    [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Promo Offers Link', true],
+    [/<strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb<i>\).<\/i> <\/li>/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true], // wrap in <a> tag
+    [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true], // wrap in <a> tag
+    [/<strong>here;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\).<\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true], // wrap in <a> tag
+    [/ <strong>here<\/strong><strong>;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true], // wrap in <a> tag
+    [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
+    [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
+    [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
+    [/\[LINK: Please create link to loyalty page. Example - <a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty">CLICK HERE<\/a>\]./gi, '<a href="!!M2.Portal/mobileportal/loyalty">here</a>.', 'Linked to Loyalty Page', true],
+    [/ \[LINK: Please create link to loyalty page. Example -<a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty"> CLICK HERE<\/a>\]/gi, ' <a href="!!M2.Portal/mobileportal/loyalty">here</a>', 'Linked to Loyalty Page', true],
+    [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
+    [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Linked to Promo Offers', true],
     [/<i>\).<\/i>\)/g, '', '', false],
 
 
@@ -179,6 +179,38 @@ const removables = [
 
 
 ];
+
+
+
+var xValues = ["Italy", "France", "Spain", "USA", "Argentina", "Argentina", "Argentina"];
+var yValues = [55, 49, 44, 24, 15, 53, 22];
+var barColors = [
+    "#EC3F5F",
+    "#8A30FC",
+    "#B850F8",
+    "#27C691",
+    "#5A47E9",
+    "#F0C734",
+    "#FFDE65",
+];
+
+new Chart("myChart", {
+    type: "doughnut",
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            text: "World Wide Wine Production 2018"
+        }
+    }
+});
+
 
 const gameCont_headerWrapper = [];
 
