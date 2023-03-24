@@ -66,12 +66,12 @@ const removables = [
     [/9Free Spins/g, '9 Free Spins', 'Sticky Text', true],
 
     // REMOVES TEXT DECORATION AND REFORMATS TEXT
-    [/ am /g, ' AM ', 'AM Time lettercase', true], // converts pm to uppercase
-    [/ pm /g, ' PM ', 'PM Time lettercase', true], // converts pm to uppercase
-    [/ am,/gi, ' AM,', 'AM Time lettercase', true], // converts pm to uppercase
-    [/ pm,/gi, ' PM,', 'PM Time lettercase', true], // converts pm to uppercase
-    [/ pm\./g, ' PM.', 'PM Time lettercase', true], // converts pm to uppercase
-    [/ am\./gi, ' AM.', 'AM Time lettercase', true], // converts pm to uppercase
+    [/ am /g, ' AM ', 'Time Capitalization', true], // converts pm to uppercase
+    [/ pm /g, ' PM ', 'Time Capitalization', true], // converts pm to uppercase
+    [/ am,/gi, ' AM,', 'Time Capitalization', true], // converts pm to uppercase
+    [/ pm,/gi, ' PM,', 'Time Capitalization', true], // converts pm to uppercase
+    [/ pm\./g, ' PM.', 'Time Capitalization', true], // converts pm to uppercase
+    [/ am\./gi, ' AM.', 'Time Capitalization', true], // converts pm to uppercase
     [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
     [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
     [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
@@ -182,35 +182,59 @@ const removables = [
 ];
 
 
+const show_QaStatistics = (qa_Errors) => {
 
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina", "Argentina", "Argentina"];
-var yValues = [55, 49, 44, 24, 15, 53, 22];
-var barColors = [
-    "#EC3F5F",
-    "#8A30FC",
-    "#B850F8",
-    "#27C691",
-    "#5A47E9",
-    "#F0C734",
-    "#FFDE65",
-];
+    qa_Errors.shift();
+        qa_Errors.shift();
 
-new Chart("myChart", {
-    type: "doughnut",
-    data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-        }]
-    },
-    options: {
-        title: {
-            display: true,
-            text: "World Wide Wine Production 2018"
-        }
+    if (qa_Errors.length > 5 ) {
+
+                var xValues = [1];
+        var yValues = [1];
+
+        qa_Errors.forEach((error, index) => {
+            xValues[index] = error[0];
+            yValues[index] = error[1];
+        });
+
+        var barColors = [
+            "#8A30FC",
+            "#B850F8",
+            "#27C691",
+            "#5A47E9",
+            "#F0C734",
+            "#FFDE65",
+            "#EC3F5F",
+        ];
+
+        new Chart("myChart", {
+            type: "polarArea",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "QA Statistics:"
+                },
+                legend: {
+                    position: 'right',
+                },
+            }
+        });
+
     }
-});
+
+
+
+}
+
+
+
 
 
 const gameCont_headerWrapper = [];
@@ -417,6 +441,7 @@ const cleanHTML = () => {
     // console.log(cleanedText)
     document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
     indentFix(newCleanedText);
+    show_QaStatistics(errorCatcher);
 }
 
 
