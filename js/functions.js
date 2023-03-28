@@ -75,6 +75,7 @@ const removables = [
     [/<i>.<\/i>/g, '', 'Font decoration', true], // cleans <i> tags
     [/à/g, ' >', 'Font decoration', true], // cleans <i> tags
     [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
+    [/%%BONUS_CODE%%/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration', false], // cleans <i> tags
     [/\(as defined in the Terms of Service&nbsp;/g, '(as defined in the Terms of Service', 'Bold characters', false],
     [/\(<i>Link to Terms of Service<\/i>\)/g, '', 'Link to Terms Service lines', true],
     [/<strong> by <\/strong>/g, ' by ', 'Bold characters', false],
@@ -91,6 +92,7 @@ const removables = [
     [/<strong>My Account &gt; My Balance.<\/strong>/g, 'My Account &gt; My Balance.', 'Bold characters', false],
     [/<strong>My Account &gt; My Balance<\/strong>/g, 'My Account &gt; My Balance', 'Bold characters', false],
     [/<strong>Please review these Standard Promotional Terms and Conditions <\/strong>/g, 'Please review these Standard Promotional Terms and Conditions ', 'Bold characters', false],
+    [/<strong>Please review these Standard Promotional Terms and Conditions<\/strong>/g, 'Please review these Standard Promotional Terms and Conditions', 'Bold characters', false],
     [/<strong>Please review these Standard Promotional Terms by <\/strong>/g, 'Please review these Standard Promotional Terms by ', 'Bold characters', false],
     [/<a href="https:\/\/adwords.google.com\/">/g, '', 'Bold characters', false],
     [/&amp; Conditions.<\/a>/g, ' Conditions', 'Bold characters', false],
@@ -185,9 +187,9 @@ const removables = [
 const show_QaStatistics = (qa_Errors) => {
 
     qa_Errors.shift();
-        qa_Errors.shift();
+    qa_Errors.shift();
 
-    if (qa_Errors.length > 5 ) {
+    if (qa_Errors.length > 3 ) {
 
                 var xValues = [1];
         var yValues = [1];
@@ -439,7 +441,7 @@ const cleanHTML = () => {
     const newCleanedText = cleanedText // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
 
     // console.log(cleanedText)
-    document.getElementById('promo-copy-fullterms').innerHTML = cleanedText;
+    document.getElementById('promo-copy-fullterms').innerHTML = editor.getData('ck5-textarea');
     indentFix(newCleanedText);
     show_QaStatistics(errorCatcher);
 }
