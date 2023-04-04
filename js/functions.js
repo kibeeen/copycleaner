@@ -102,11 +102,8 @@ const removables = [
     [/<strong>DISCLAIMER:<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
     [/<strong>DISCLAIMER<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
     [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
-    [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
-    [/\(<i>Link<\/i>\) /g, '', '', false],
-    [/\(<i>Link<\/i>\)/g, '', '', false],
-    [/<i>\(Link\)<\/i>/g, '', '', false],
-    [/.<i>\).<\/i>\)/g, '.', '', false],
+    
+    
     [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', '', false],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
     [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
@@ -124,6 +121,7 @@ const removables = [
 
 
     // ADDING LINK TO TEXT
+    [/<strong>here.<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb./gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true],
     [/<strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb<i>\).<\/i> <\/li>/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true], // wrap in <a> tag
     [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true], // wrap in <a> tag
     [/<strong>here;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\).<\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true], // wrap in <a> tag
@@ -131,14 +129,19 @@ const removables = [
     [/<strong>here<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
     [/<strong>here ;<\/strong> <i>\(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)<\/i>/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
     [/<strong>here ;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/gi, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
-    [/<strong>here.<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb./gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true],
     [/\[LINK: Please create link to loyalty page. Example - <a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty">CLICK HERE<\/a>\]./gi, '<a href="!!M2.Portal/mobileportal/loyalty">here</a>.', 'Linked to Loyalty Page', true],
     [/ \[LINK: Please create link to loyalty page. Example -<a href="https:\/\/www.nj.betmgm.com\/en\/labelhost\/login\?rurlauth=1&amp;rurl=https:%2F%2Fwww.nj.betmgm.com%2Fen%2Fmobileportal%2Floyalty"> CLICK HERE<\/a>\]/gi, ' <a href="!!M2.Portal/mobileportal/loyalty">here</a>', 'Linked to Loyalty Page', true],
     [/here; \(hyperlink to !!M2.Promo\/offers\/grouped\?filter=cb\)/gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true],
     [/ \(Link to Standard Promo TCs\) /gi, ' ', 'Linked to Promo Offers', true],
     [/<i>\).<\/i>\)/g, '', '', false],
     [/<i>\).<\/i>/g, '.', '', false],
-
+    [/.<i>\).<\/i>\)/g, '.', '', false],
+    [/<i>\(Link to TCs\)<\/i>/g, '', '', false],
+    [/\(<i>Link<\/i>\) /g, '', '', false],
+    [/\(<i>Link<\/i>\)/g, '', '', false],
+    [/<i>\(Link\)<\/i>/g, '', '', false],
+    [/i>\)./g, '', '', false],
+    
 
 
     // [/ <\/p>/g, '</p>', 'Extra white spaces', false],
