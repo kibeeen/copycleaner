@@ -1,5 +1,5 @@
 
-
+// alert("Copied Terms and Conditions");
 
 
 const removables = [
@@ -8,6 +8,7 @@ const removables = [
     // REMOVES UNNECESSARY TAGS AND FIX SPACING ISSUES
     [/​/g, '', 'Half spaces', true],
     [/ /g, ' ', 'Narrow spaces', true],
+    [/<p>&nbsp;<\/p>/g, ' ', 'Extra Spacing', false],
     [/<i>&nbsp;<\/i>/g, ' ', 'Sticky Text', true],
     [/<p><strong>&nbsp;<\/strong><\/p>/g, '', 'Sticky Text', false],
     [/&nbsp;/g, ' ', '&nbsp; tags', true],
@@ -102,8 +103,8 @@ const removables = [
     [/<strong>DISCLAIMER:<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
     [/<strong>DISCLAIMER<\/strong>/gi, '<strong>Disclaimer:</strong>', 'Disclaimer Fixed Capitalization', false],
     [/<span style="color:#2C2C2C;">. &lt;MDHHS LOGO - MDHHS logo sized to 3” wide&gt;<\/p>/g, '', 'Unnecessary characters', false],
-    
-    
+
+
     [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', '', false],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
     [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
@@ -141,7 +142,7 @@ const removables = [
     [/\(<i>Link<\/i>\)/g, '', '', false],
     [/<i>\(Link\)<\/i>/g, '', '', false],
     [/i>\)./g, '', '', false],
-    
+
 
 
     // [/ <\/p>/g, '</p>', 'Extra white spaces', false],
@@ -193,9 +194,9 @@ const show_QaStatistics = (qa_Errors) => {
     qa_Errors.shift();
     qa_Errors.shift();
 
-    if (qa_Errors.length > 3 ) {
+    if (qa_Errors.length > 3) {
 
-                var xValues = [1];
+        var xValues = [1];
         var yValues = [1];
 
         qa_Errors.forEach((error, index) => {
@@ -238,8 +239,6 @@ const show_QaStatistics = (qa_Errors) => {
 
 
 }
-
-
 
 
 
@@ -422,10 +421,7 @@ const cleanHTML = () => {
                 count += matches.length;
                 totalErrors += count
             }
-
             console.log(matches);
-
-
         }
 
         rawText = rawText.replace(regex, replacements);
@@ -435,19 +431,25 @@ const cleanHTML = () => {
 
     }
 
-
-    console.log(errorCatcher);
-    console.log(totalErrors);
+    
+    
+    // console.log(errorCatcher);
+    // console.log(totalErrors);
     cleanedText = rawText;
-
+    
+    // console.log("happy "+cleanedText)
     //    const newCleanedText = cleanedText;
 
     const newCleanedText = cleanedText // adds spaces Before FREEPLAY, BONUS DOLLARS, etc..
 
     // console.log(cleanedText)
-    document.getElementById('promo-copy-fullterms').innerHTML = editor.getData('ck5-textarea');
-    indentFix(newCleanedText);
+
+    // console.log(document.getElementById('ck5-textarea').innerHTML);
+    // document.getElementById('ck5-textarea').innerHTML = rawText;
+    // document.getElementById('promo-copy-fullterms').innerHTML = editor.getData('ck5-textarea');
     show_QaStatistics(errorCatcher);
+    editor.setData(cleanedText);
+    return cleanedText;
 }
 
 
@@ -464,6 +466,8 @@ const convertArray_toString = (toClean_text) => {
 
 const cleanTags_fromArray = (array, regex) => {
 
+    alert("cleanTags_fromArray triggered");
+
     for (let i = 0; i < array.length; i++) {
         array[i] = array[i].replace(regex, '');
     }
@@ -476,6 +480,8 @@ const cleanTags_fromArray = (array, regex) => {
 }
 
 const indentFix = (newCleanedText) => {
+
+    alert("indexFix triggered");
 
     const tempTextStorage = Array.from(cleanedText);
     const tempCleanedText = cleanedText;
