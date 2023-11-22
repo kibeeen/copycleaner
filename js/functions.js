@@ -8,6 +8,9 @@ const removables = [
     // REMOVES UNNECESSARY TAGS AND FIX SPACING ISSUES
     [/​/g, '', 'Half spaces', true],
     [/ /g, ' ', 'Narrow spaces', true],
+    [/ [] /g, '', 'Narrow spaces', true],
+    [/\(<em>Link to these<\/em>\)./g, '.', 'Extra', false],
+    [/\(<i>Link to these<\/i>\)./g, '.', 'Extra', false],
     [/<p>&nbsp;<\/p>/g, ' ', 'Extra Spacing', false],
     [/<i>&nbsp;<\/i>/g, ' ', 'Sticky Text', true],
     [/<p><strong>&nbsp;<\/strong><\/p>/g, '', 'Sticky Text', false],
@@ -82,6 +85,7 @@ const removables = [
     [/\(<i>Link to Terms of Service<\/i>\)/g, '', 'Link to Terms Service lines', true],
     [/<strong> by <\/strong>/g, ' by ', 'Bold characters', false],
     [/<i>\(Link to Terms of Service\)<\/i> /g, '', 'Link to Terms Service lines', true],
+    [/\[<i>\(Link to Terms of Service\)<\/i>]/g, '', 'Link to Terms Service lines', true],
     [/<i>\(Link to Terms of Service\)<\/i><i>\).<\/i> /g, ').', 'Link to Terms Service lines', true],
     [/\(Link to Terms of Service\)/g, '', 'Link to Terms Service lines', true],
     [/<i>\(Link to Standard Promo TCs\)<\/i>/g, '', 'Bold characters', false],
@@ -109,7 +113,6 @@ const removables = [
     [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', '', false],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', '', false],
     [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
-    [/<strong>here;<\/strong>\[<em>\(<\/em><em>hyperlink to <\/em>!!M2.Promo\/offers\/grouped\?filter=cb<em>\)<\/em>]<em>.<\/em>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
     [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="https://help.borgataonline.com/en/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', 'Linked to Opt Out Bonus', true],
     [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', 'Cleansed My Account: My Balance', false],
     [/<strong>Standard Promotional Terms and Conditions<\/strong>/g, 'Standard Promotional Terms and Conditions', '', false],
@@ -124,6 +127,8 @@ const removables = [
 
 
     // ADDING LINK TO TEXT
+    [/<strong>here;<\/strong> \[<i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb\]/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
+    [/<strong>here;<\/strong>\[<em>\(<\/em><em>hyperlink to <\/em>!!M2.Promo\/offers\/grouped\?filter=cb<em>\)<\/em>]<em>.<\/em>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', '', true],
     [/<strong>here.<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb./gi, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true],
     [/<strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb<i>\).<\/i> <\/li>/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.', 'Linked to Promo Offers', true], // wrap in <a> tag
     [/ <strong>here;<\/strong> <i>\(hyperlink to <\/i>!!M2.Promo\/offers\/grouped\?filter=cb/g, ' <a href="!!M2.Promo/offers/grouped?filter=cb">here</a>', 'Linked to Promo Offers', true], // wrap in <a> tag
@@ -143,7 +148,6 @@ const removables = [
     [/\(<i>Link<\/i>\) /g, '', '', false],
     [/\(<i>Link<\/i>\)/g, '', '', false],
     [/<i>\(Link\)<\/i>/g, '', '', false],
-    [/i>\)./g, '', '', false],
 
 
 
