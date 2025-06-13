@@ -2,7 +2,7 @@
 
 const removables = [
 
-    
+
 
     [/\u00A0/g, ' ', 'Non-breaking space'],
     [/\u202F/g, ' ', 'Narrow non-breaking space'],
@@ -180,7 +180,7 @@ const removables = [
     [/<i>\(Link\)<\/i>/g, '', ''],
     [/PartyCasino/g, 'PartyCasino', ''],
 
-    
+
 
     // FIX 2025
     [/i&gt;/g, ''],
@@ -241,8 +241,8 @@ const removables = [
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
 
-    
-    
+
+
 
 
 
@@ -369,84 +369,90 @@ function removeFigureDivTags(inputString) {
 
 
 function formatRewardTable(rawHtml) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(rawHtml, 'text/html');
-  const table = doc.querySelector('table');
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawHtml, 'text/html');
+    const table = doc.querySelector('table');
 
-  if (!table) return rawHtml; // In case no table is found
+    if (!table) return rawHtml; // In case no table is found
 
-  // Add styling and classes to table
-  table.className = 'table table-bordered table-striped';
-  table.style.textAlign = 'center';
-  table.style.marginBlock = '1rem';
-  table.style.tableLayout = 'fixed';
+    // Add styling and classes to table
+    table.className = 'table table-bordered table-striped';
+    table.style.textAlign = 'center';
+    table.style.marginBlock = '1rem';
+    table.style.tableLayout = 'fixed';
 
-  const tbody = table.querySelector('tbody');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
 
-  const containsLeaderboard = rawHtml.toLowerCase().includes('leaderboard');
+    const containsLeaderboard = rawHtml.toLowerCase().includes('leaderboard');
 
-  const thead = document.createElement('thead');
-  thead.style.backgroundColor = '#d4b962';
+    const thead = document.createElement('thead');
+    thead.style.backgroundColor = '#d4b962';
 
-  // If Leaderboard is mentioned, create a colspan header
-  if (containsLeaderboard) {
-    const headerRow1 = document.createElement('tr');
-    const th = document.createElement('th');
-    th.colSpan = 2;
-    th.innerHTML = rows[0].textContent.trim();
-    th.setAttribute('style', 'background-color: #d4b962;');
-    headerRow1.appendChild(th);
-    thead.appendChild(headerRow1);
-    rows.shift(); // remove from tbody
-  }
+    // If Leaderboard is mentioned, create a colspan header
+    if (containsLeaderboard) {
+        const headerRow1 = document.createElement('tr');
+        const th = document.createElement('th');
+        th.colSpan = 2;
+        th.innerHTML = rows[0].textContent.trim();
+        th.setAttribute('style', 'background-color: #d4b962;');
+        headerRow1.appendChild(th);
+        thead.appendChild(headerRow1);
+        rows.shift(); // remove from tbody
+    }
 
-  // Convert first row into <th> with styles
-  const headerRow2 = rows.shift();
-  const newHeaderRow = document.createElement('tr');
-  headerRow2.querySelectorAll('td').forEach(td => {
-    const th = document.createElement('th');
-    th.innerHTML = td.innerHTML;
-    th.setAttribute('style', 'background-color: #d4b962;');
-    newHeaderRow.appendChild(th);
-  });
-  thead.appendChild(newHeaderRow);
+    // Convert first row into <th> with styles
+    const headerRow2 = rows.shift();
+    const newHeaderRow = document.createElement('tr');
+    headerRow2.querySelectorAll('td').forEach(td => {
+        const th = document.createElement('th');
+        th.innerHTML = td.innerHTML;
+        th.setAttribute('style', 'background-color: #d4b962;');
+        newHeaderRow.appendChild(th);
+    });
+    thead.appendChild(newHeaderRow);
 
-  // Create a clean, styled tbody
-  const newTbody = document.createElement('tbody');
-  newTbody.style.backgroundColor = '#ffffff';
+    // Create a clean, styled tbody
+    const newTbody = document.createElement('tbody');
+    newTbody.style.backgroundColor = '#ffffff';
 
-  rows.forEach((tr, index) => {
-    const newRow = document.createElement('tr');
-    const cells = tr.querySelectorAll('td');
-    const isLastRow = index === rows.length - 1;
+    rows.forEach((tr, index) => {
+        const newRow = document.createElement('tr');
+        const cells = tr.querySelectorAll('td');
+        const isLastRow = index === rows.length - 1;
 
-    cells.forEach(td => {
-      const newCell = document.createElement('td');
-      newCell.innerHTML = isLastRow ? `<strong>${td.innerHTML}</strong>` : td.innerHTML;
-      newRow.appendChild(newCell);
+        cells.forEach(td => {
+            const newCell = document.createElement('td');
+            newCell.innerHTML = isLastRow ? `<strong>${td.innerHTML}</strong>` : td.innerHTML;
+            newRow.appendChild(newCell);
+        });
+
+        newTbody.appendChild(newRow);
     });
 
-    newTbody.appendChild(newRow);
-  });
+    // Replace original content
+    table.innerHTML = '';
+    table.appendChild(thead);
+    table.appendChild(newTbody);
 
-  // Replace original content
-  table.innerHTML = '';
-  table.appendChild(thead);
-  table.appendChild(newTbody);
-
-  return table.outerHTML;
+    return table.outerHTML;
 }
 
+function previewTerms() {
+
+    let termsData = editor.getData('ck5-textarea');
+    let tableData = document.getElementById("table-code");
+    let termsPreviewBox = document.getElementById("fullterms-preview-full");
+
+    let assembledTerms = termsData.replace('{table removed}', tableData);
+
+    termsPreviewBox.innerHTML = assembledTerms;
+}
 
 
 const target = document.querySelector('#ck5-textarea');
 var cleanedText = null;
 let cleanedTableData = "";
-
-
-
-
 
 
 const cleanHTML = () => {
@@ -581,7 +587,6 @@ function copyTableToClipboard() {
     // alert("Copied Table");
 }
 
-
 function copyToClipboard() {
     // Get the text field
     var copyText = editor.getData('ck5-editor');
@@ -593,8 +598,6 @@ function copyToClipboard() {
     // Alert the copied text
     alert("Copied Terms and Conditions");
 }
-
-
 
 
 function updateLinkColor(cleanedtext, brand) {
