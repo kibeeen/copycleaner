@@ -13,6 +13,9 @@ const removables = [
     [/\u2060/g, '', 'Word joiner'],
 
 
+    // [/<li>Gambling Problem? Call 1-800-GAMBLER.<\/li>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
+
+
     [/​/g, '', 'Half spaces'],
     [/ /g, ' ', 'Narrow spaces'],
     [/ [] /g, '', 'Narrow spaces'],
@@ -216,13 +219,14 @@ const removables = [
     [/Dollarswagering/g, 'Dollars wagering', ''],
     [/Dollarsvalid/g, 'Dollars valid', ''],
     [/<p>KEY TERMS:<\/p>/g, '<strong>Key Terms:</strong>', ''],
-    [/<ul><li>Gambling Problem\?<\/li><\/ul>/g, '<p>Gambling Problem?</p>', ''],
+    // [/<ul>\s*<li>Gambling Problem\s*<\/li>\s*<\/ul>/gi, '<p>Gambling Problem?</p>', ''],
     [/Call 1-800-GAMBLER.Must/g, 'Call 1-800-GAMBLER. Must', ''],
     [/p.m./g, 'PM'],
     [/<strong>KEY TERMS:<\/strong>/g, '<strong>Key Terms:</strong>'],
     [/<li>OLG Internal Control Trigger Based applies to this Promotion<\/li>/g, '<li>OLG Internal Control Trigger Based applies to this Promotion.</li>'],
     [/<p>GAMBLING PROBLEM:<\/p>/g, '<p><strong>GAMBLING PROBLEM:</strong></p>'],
     [/Eligible Game\(s\):/g, 'Eligible Games:'],
+    // [/This is a leaderboard promotion where players earn\s*<\/li>\s*<\/ul>\s*<p>\s*\(“Leaderboard Points\).\s*<\/p>/g, 'This is a leaderboard promotion where players earn (“Leaderboard Points).</li>'],
 
     [/earn<\/li>\s*<li>/gi, 'earn '],
     [/this “Promotion”\)<\/strong>/g, 'this “Promotion”):</strong>'],
@@ -231,7 +235,13 @@ const removables = [
     [/<p><strong>Registration Procedure<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedure:</strong></p>'],
     [/<p><strong>Important Terms<\/strong>\s*<\/p>/g, '<p><strong>Important Terms:</strong></p>'],
 
+    [/<p>\s*&nbsp;\s*<\/p>/g, ''],
 
+    [/GAMBLER.\s*Must/g, 'GAMBLER.</p><p>Must'],
+    // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
+    // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
+
+    
     
 
 

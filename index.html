@@ -67,9 +67,33 @@
 
 
                     <div class="cms-card__body">
-                        <!-- CK5 Editor -->
-                        <!-- CK5 Editor -->
-                        <div class="editor"></div>
+                        <div class="m-4">
+                            <ul class="nav nav-tabs" id="termsTab">
+                                <li class="nav-item">
+                                    <a href="#fullterms-code" class="nav-link active" data-bs-toggle="tab">Edit Terms</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#fullterms-preview" class="nav-link" data-bs-toggle="tab">Preview</a>
+                                </li>
+                            
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane show active" id="fullterms-code">
+                                    <br>
+                                    <div class="editor"></div>
+                                </div>
+                                <div class="tab-pane" id="fullterms-preview">
+                                    <h4 class="mt-2">Profile tab content</h4>
+                                    <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna,
+                                        ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu
+                                        viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum
+                                        id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc
+                                        facilisis leo at faucibus adipiscing.</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -83,25 +107,23 @@
                     </div>
                     <hr class="cms-card__hr">
 
-           
+
                     <div class="cms-card__body">
 
                         <div class="m-4">
                             <ul class="nav nav-tabs" id="myTab">
                                 <li class="nav-item">
-                                    <a href="#home" class="nav-link active" data-bs-toggle="tab">Home</a>
+                                    <a href="#table-data" class="nav-link active" data-bs-toggle="tab">Tables</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#profile" class="nav-link" data-bs-toggle="tab">Profile</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#messages" class="nav-link" data-bs-toggle="tab">Messages</a>
-                                </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane show active" id="home">
-                                    <h4 class="mt-2">Home tab content</h4>
+                                <div class="tab-pane show active" id="table-data">
+                                    <!-- <h4 class="mt-2">table-data tab content</h4> -->
                                     <!-- code -->
+                                    <br>
                                     <div>
                                         <textarea id="table-code">Leaderboard Table goes here</textarea>
                                     </div>
