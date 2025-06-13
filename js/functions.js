@@ -452,6 +452,11 @@ function previewTerms() {
     termsPreviewBox.innerHTML = assembledTerms;
 }
 
+function copyPreviewTerms() {
+    let termsPreviewBox = document.getElementById("fullterms-preview-full");
+    editor.setData(termsPreviewBox.innerHTML);
+}
+
 
 function updateLinkColor(brand, game, state) {
 
