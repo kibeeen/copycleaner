@@ -443,10 +443,9 @@ function previewTerms() {
     let tableData = document.getElementById("table-view");
     let termsPreviewBox = document.getElementById("fullterms-preview-full");
 
-    if (tableData) {
-        let assembledTerms = termsData.replace('{table removed}', tableData.outerHTML);
-        termsPreviewBox.innerHTML = assembledTerms;
-    }
+
+    let assembledTerms = termsData.replace('{table removed}', tableData.outerHTML);
+
 
 
     // Inject the result into the preview box
