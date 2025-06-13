@@ -2,6 +2,8 @@
 
 const removables = [
 
+    
+
     [/\u00A0/g, ' ', 'Non-breaking space'],
     [/\u202F/g, ' ', 'Narrow non-breaking space'],
     [/\u200B/g, '', 'Zero-width space'],
@@ -175,6 +177,8 @@ const removables = [
     [/<i>\(Link\)<\/i>/g, '', ''],
     [/PartyCasino/g, 'PartyCasino', ''],
 
+    
+
     // FIX 2025
     [/i&gt;/g, ''],
     [/i&gt;\)\./g, ''],
@@ -217,6 +221,16 @@ const removables = [
     [/<li>OLG Internal Control Trigger Based applies to this Promotion<\/li>/g, '<li>OLG Internal Control Trigger Based applies to this Promotion.</li>'],
     [/<p>GAMBLING PROBLEM:<\/p>/g, '<p><strong>GAMBLING PROBLEM:</strong></p>'],
     [/Eligible Game\(s\):/g, 'Eligible Games:'],
+
+    [/earn<\/li>\s*<li>/gi, 'earn '],
+    [/this “Promotion”\)<\/strong>/g, 'this “Promotion”):</strong>'],
+    [/<p><strong>Promotional Period<\/strong>\s*<\/p>/g, '<p><strong>Promotional Period:</strong></p>'],
+    [/<p><strong>Claiming Promotion Offer<\/strong>\s*<\/p>/g, '<p><strong>Claiming Promotion Offer:</strong></p>'],
+    [/<p><strong>Registration Procedure<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedure:</strong></p>'],
+    [/<p><strong>Important Terms<\/strong>\s*<\/p>/g, '<p><strong>Important Terms:</strong></p>'],
+
+
+    
 
 
 
