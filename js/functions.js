@@ -47,11 +47,9 @@ const removables = [
     [/<span style="color:#2B579A;">/g, ''],
     [/<span style="color:#242424;">/g, ''],
     [/<span style="color:#404040;">/g, ''],
-    [/\(as defined in the Terms of Service \(Link to Terms of Service\)/g, '(as defined in the <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">Terms of Service</a>)', ''],
-
-    [/\(as defined in the Terms of Service \(https:\/\/help.pa.borgataonline.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">Terms of Service</a>)', ''],
-
-    [/\(as defined in the Terms of Service \(https:\/\/help.pa.betmgm.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">Terms of Service</a>)', ''],
+    [/\(as defined in the Terms of Service \(Link to Terms of Service\)/g, '(as defined in the Terms of Service)', ''],
+    [/\(as defined in the Terms of Service \(https:\/\/help.pa.borgataonline.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the Terms of Service)', ''],
+    [/\(as defined in the Terms of Service \(https:\/\/help.pa.betmgm.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the Terms of Service)', ''],
 
 
     [/General Terms and Conditions, Terms of Service, and Privacy Policy apply \(<a href="https:\/\/help.pa.borgataonline.com\/en\/general-information\/legal-matters\/general-terms-and-conditions">https:\/\/help.pa.borgataonline.com\/en\/general-information\/legal-matters\/general-terms-and-conditions<\/a>\)./g, '<a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">Terms of Service</a>, and Privacy Policy apply.'],
