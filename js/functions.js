@@ -443,8 +443,25 @@ function previewTerms() {
     let termsData = editor.getData('ck5-textarea');
     let tableData = document.getElementById("table-code");
     let termsPreviewBox = document.getElementById("fullterms-preview-full");
-
     let assembledTerms = termsData.replace('{table removed}', tableData);
+    termsPreviewBox.innerHTML = assembledTerms;
+
+}
+
+function updateLinkColor(brand, game, state) {
+
+    let termsData = editor.getData('ck5-textarea');
+    let tableData = document.getElementById("table-code");
+    let termsPreviewBox = document.getElementById("fullterms-preview-full");
+
+    
+
+    if(brand == 'borgata'){
+
+        let assembledTerms = termsData.replace('#d4b962', '#d21c5d');
+
+    }
+
 
     termsPreviewBox.innerHTML = assembledTerms;
 }
