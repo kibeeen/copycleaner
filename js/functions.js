@@ -387,7 +387,7 @@ function formatRewardTable(rawHtml) {
     const containsLeaderboard = rawHtml.toLowerCase().includes('leaderboard');
 
     const thead = document.createElement('thead');
-    thead.style.backgroundColor = '#d4b962';
+    thead.setAttribute('style', 'background-color: #d4b962;');
 
     // If Leaderboard is mentioned, create a colspan header
     if (containsLeaderboard) {
