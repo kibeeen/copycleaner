@@ -35,7 +35,7 @@ const removables = [
     [/<br>/g, ' ', '<br> tags'],
     [/<\/br>/g, ' ', '<br> tags'],
     [/< \/br>/g, ' ', '<br> tags'],
-    [/<p>&nbsp;<\/p>/g, '', 'Extra line spacing'],
+
 
     [/<strong>\s*<\/strong>/g, ' ', 'Extra <strong> tags'], // removes extra strong
     [/<\/strong>\s*<strong>/g, ' ', 'Extra <strong> tags'], // removes extra strong
@@ -213,6 +213,8 @@ const removables = [
     [/[]]/g, ''],
     [/\[\]/g, '', ''],
     [/Dollarsand/g, 'Dollars and', ''],
+    [/Dollarswagering/g, 'Dollars wagering', ''],
+    [/Dollarsvalid/g, 'Dollars valid', ''],
     [/<p>KEY TERMS:<\/p>/g, '<strong>Key Terms:</strong>', ''],
     [/<ul><li>Gambling Problem\?<\/li><\/ul>/g, '<p>Gambling Problem?</p>', ''],
     [/Call 1-800-GAMBLER.Must/g, 'Call 1-800-GAMBLER. Must', ''],
@@ -361,6 +363,8 @@ function formatRewardTable(rawHtml) {
   const doc = parser.parseFromString(rawHtml, 'text/html');
   const table = doc.querySelector('table');
 
+  if (!table) return rawHtml; // In case no table is found
+
   // Add styling and classes to table
   table.className = 'table table-bordered table-striped';
   table.style.textAlign = 'center';
@@ -370,38 +374,37 @@ function formatRewardTable(rawHtml) {
   const tbody = table.querySelector('tbody');
   const rows = Array.from(tbody.querySelectorAll('tr'));
 
-  // Check for Leaderboard text
   const containsLeaderboard = rawHtml.toLowerCase().includes('leaderboard');
 
   const thead = document.createElement('thead');
-  thead.setAttribute('style', 'background-color: #d4b962;');
+  thead.style.backgroundColor = '#d4b962';
 
-  // Handle Leaderboard header if present
+  // If Leaderboard is mentioned, create a colspan header
   if (containsLeaderboard) {
     const headerRow1 = document.createElement('tr');
     const th = document.createElement('th');
     th.colSpan = 2;
-    // Find and use the cell with "Leaderboard"
-    const leaderboardText = rows[0].textContent.trim();
-    th.innerHTML = leaderboardText;
+    th.innerHTML = rows[0].textContent.trim();
+    th.setAttribute('style', 'background-color: #d4b962;');
     headerRow1.appendChild(th);
     thead.appendChild(headerRow1);
-    rows.shift(); // remove it from tbody rows
+    rows.shift(); // remove from tbody
   }
 
-  // Convert the next row into <th>
+  // Convert first row into <th> with styles
   const headerRow2 = rows.shift();
   const newHeaderRow = document.createElement('tr');
   headerRow2.querySelectorAll('td').forEach(td => {
     const th = document.createElement('th');
     th.innerHTML = td.innerHTML;
+    th.setAttribute('style', 'background-color: #d4b962;');
     newHeaderRow.appendChild(th);
   });
   thead.appendChild(newHeaderRow);
 
-  // Create a styled tbody
+  // Create a clean, styled tbody
   const newTbody = document.createElement('tbody');
-  newTbody.setAttribute('style', 'background-color: #ffffff;');
+  newTbody.style.backgroundColor = '#ffffff';
 
   rows.forEach((tr, index) => {
     const newRow = document.createElement('tr');
@@ -417,7 +420,7 @@ function formatRewardTable(rawHtml) {
     newTbody.appendChild(newRow);
   });
 
-  // Assemble final table
+  // Replace original content
   table.innerHTML = '';
   table.appendChild(thead);
   table.appendChild(newTbody);

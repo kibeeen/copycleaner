@@ -73,13 +73,13 @@ body {
 
 .link-group__list-items .active {
     font-weight: 700;
-    color: #673ab7;
+    color: #0A0A0A;
     background-color: #EDE7F6;
     border-radius: 5px;
 }
 
 .link-group__li:hover {
-    color: #673ab7;
+    color: #0A0A0A;
     background-color: #EDE7F6;
     border-radius: 5px;
 }
@@ -88,7 +88,7 @@ body {
 .with__chevron-up a:hover,
 .with__chevron-down:hover,
 .with__chevron-up:hover {
-    color: #673ab7;
+    color: #0A0A0A;
     cursor: pointer;
 }
 
@@ -144,7 +144,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #7e55d785;
+    background: #0A0A0A85;
 }
 
 
@@ -247,7 +247,7 @@ body {
 }
 
 .square-icon:hover {
-    background-color: #9275CA;
+    background-color: #000;
 }
 
 .square-icon:hover i {
@@ -256,7 +256,7 @@ body {
 
 .square-icon i {
     font-size: 1.25em;
-    color: #9275CA;
+    color: #000;
 }
 
 .search-bar {
@@ -457,17 +457,17 @@ html {
 
 .btn-cms:hover {
     text-decoration: none;
-    background-color: #9275CA;
+    background-color: #000;
 
 }
 
 .btn-cms-primary {
     /* background-color: #5E35B1; */
-    background-color: #7E55D7;
+    background-color: #0A0A0A;
 }
 
 .btn-cms-primary:hover {
-    background-color: #9275CA;
+    background-color: #000;
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.3) 0px 1px 10px 0px; */
 }
 
@@ -683,7 +683,7 @@ body {
 
 
 .btn-purple {
-    background-color: #7E55D7;
+    background-color: #0A0A0A;
     color: #fff;
     padding: 5px 40px;
     border-radius: 5px;
