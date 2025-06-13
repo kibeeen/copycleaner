@@ -1,23 +1,18 @@
 $(document).ready(function () {
 
+  const target = document.querySelector('#ck5-textarea'); // Ensure this ID matches your CKEditor textarea
 
-  // Side Navigation - Selecting items
-  $('a .link-group__li').click(function (e) {
-    $('a .link-group__li').removeClass('active');
-    $(this).addClass('active');
+  target.addEventListener('paste', function () {
+    setTimeout(() => {
+    //   for (let i = 0; i < 3; i++) {
+        cleanHTML(); // Call cleanHTML function after pasting
+      
+      // Scroll to the top by updating href
+      window.location.href = '#cms__main-content';
+      target.scrollTop = 0;
+    }, 100); // Small delay to ensure pasted content is processed
   });
 
-  $('.modal-close-button').click(() => {
-    $('#cms__modal-overlay').css('display', 'none');
-  });
-
-  $('#modal-comp__full-tncs').click(() => {
-    $('#cms__modal-overlay').css('display', 'flex');
-  });
-
-  
-
-  
 
 
 
@@ -27,9 +22,6 @@ $(document).ready(function () {
 
 
 
-
-
- 
 
 
 

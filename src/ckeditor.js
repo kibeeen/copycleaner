@@ -15,9 +15,6 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice.js';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting.js';
 import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript.js';
-import Table from '@ckeditor/ckeditor5-table/src/table.js';
-import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 
 class Editor extends ClassicEditor {}
@@ -36,9 +33,6 @@ Editor.builtinPlugins = [
 	PasteFromOffice,
 	SourceEditing,
 	Superscript,
-	Table,
-	TableCellProperties,
-	TableToolbar,
 	TextTransformation
 ];
 
@@ -57,21 +51,13 @@ Editor.defaultConfig = {
 			'numberedList',
 			'indent',
 			'|',
-			'insertTable',
 			'undo',
 			'redo',
 			'sourceEditing'
 		]
 	},
 	language: 'en',
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells',
-			'tableCellProperties'
-		]
-	}
+
 };
 
 export default Editor;

@@ -321,11 +321,12 @@ body {
 body,
 html {
     height: 100%;
+    font-family: "Geist", sans-serif !important;
 }
 
 #cms__main-body {
     background-color: #FFF;
-    width: calc(100% - 260px);
+    width: 100%;
     height: calc(100% - 87px);
     float: right;
 }
@@ -342,8 +343,18 @@ html {
     background-color: #eef2f6;
     padding: 20px;
     border-radius: 10px;
-    height: 100%;
+    height: 100vh;
     margin-right: 20px;
+}
+
+#table-code {
+    height: 100%;
+    padding: 1em;
+    min-height: 300px;
+    width: 100%;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    font-family: 'Geist';
 }
 
 
@@ -447,7 +458,7 @@ html {
 .btn-cms:hover {
     text-decoration: none;
     background-color: #9275CA;
-    
+
 }
 
 .btn-cms-primary {
@@ -485,7 +496,7 @@ html {
     top: 0;
     left: 0;
     visibility: hidden;
-    
+
 }
 
 
@@ -498,7 +509,8 @@ html {
 
 /* MODAL */
 
-html, body {
+html,
+body {
     height: 100%;
     min-height: 100% !important;
 }
@@ -584,10 +596,11 @@ html, body {
     background-color: #050505;
     /* cursor: grab; */
     /* background-color: #eef2f6; */
-  
+
 }
 
-.modal-top-spacer, .modal-bot-spacer {
+.modal-top-spacer,
+.modal-bot-spacer {
     background-color: #fff;
 }
 
@@ -662,7 +675,7 @@ html, body {
     font-family: 'Poppins';
 }
 
-#promotion-tac-header ul > li ul > li {
+#promotion-tac-header ul>li ul>li {
     list-style: square !important;
     list-style-type: square;
 }
@@ -686,17 +699,20 @@ html, body {
     height: 100vh;
     padding: 10px 20px;
     z-index: 1;
-    font-size: 0.85em;
+    font-size: 0.9em;
     line-height: 1.5em;
+    font-family: "Geist", sans-serif !important;
 }
 
 #ck5-textarea p {
     font-size: 0.85rem;
     line-height: 1.5em;
+    font-family: 'Geist';
 }
 
 #ck5-textarea a {
     color: #3779eb;
+    font-family: 'Geist';
 }
 
 .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
@@ -709,13 +725,14 @@ html, body {
 
 
 
-.raw-text__wrapper, .cleaned-text__wrapper {
+.raw-text__wrapper,
+.cleaned-text__wrapper {
     padding: 20px;
 }
 
 .raw-text__wrapper {
     background-color: #050505;
-   max-width: 800px;
+    max-width: 800px;
 }
 
 .mpp-simulator__wrapper {
@@ -735,7 +752,7 @@ html, body {
     height: 442px;
     width: 100%;
     font-size: 0.8em;
- 
+
 }
 
 #copy-code {
@@ -747,14 +764,14 @@ textarea:focus-visible {
 }
 
 
-div.ck-source-editing-area > textarea {
+div.ck-source-editing-area>textarea {
     top: 0;
     left: 0;
     overflow: auto;
     height: 650px;
     font-size: 0.85em;
     line-height: 1.25em;
-    font-family: monospace;
+    font-family: 'Geist';
     color: #363636;
     background-color: #f3f3f3;
 }
@@ -763,6 +780,7 @@ div.ck-source-editing-area > textarea {
     min-height: 500px;
 }
 
-.ck.ck-editor__editable[role='textbox'], .ck.editor[role='textbox'] {
+.ck.ck-editor__editable[role='textbox'],
+.ck.editor[role='textbox'] {
     max-height: 680px;
 }

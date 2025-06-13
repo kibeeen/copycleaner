@@ -11,22 +11,23 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Preconnect to optimize font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap"
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300..600&family=Poppins:wght@400..700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet">
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&amp;family=Poppins:wght@400;500;700&amp;display=swap">
-    <link rel="stylesheet" onload="this.onload=null;this.removeAttribute('media');"
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&amp;family=Poppins:wght@400;500;700&amp;display=swap">
+
 
 
     <!-- <link rel="stylesheet" type="text/css" href="style/ckeditor.css"> -->
@@ -35,234 +36,13 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
+    <script src="./ckeditor5/build/ckeditor.js"></script>
 
 </head>
 
 <body>
-    <div id="cms__modal-overlay" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-close-button">
-                <div class="modal-close-button-container"><i class="ti ti-x"></i></div>
-            </div>
-            <!-- <div class="modal-top-spacer"></div> -->
-            <div class="modal-container">
 
-
-                <div class="modal-caption-box">
-                    <div class="modal-caption-container">
-                        <div class="modal-img"></div>
-                        <div class="modal-title">
-                            <h4>Terms and Conditions</h4>
-                        </div>
-                        <div class="modal-desc">
-                            <p>We're glad to have you on board. Here are some quick tips to get you up and running.</p>
-                        </div>
-                        <div class="modal-pagi"></div>
-                        <div class="modal-cta">
-                            <button class="btn btn-purple">Back</button>
-                            <button class="btn btn-purple">Next</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-preview-box">
-                    <div class="modal-visual-src">
-                        <div class="promotion-tac-header epcot-text-color epcot-tac-arrow"><span>Terms
-                                and
-                                Conditions</span><i class="theme-up"></i></div><!---->
-                        <div id="promo-copy-fullterms" class="promotion-tac-body pc-txt epcot-text-color">
-                            <!-- PROMO FULL TERMS HERE -->
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <!-- <div class="modal-bot-spacer"></div> -->
-        </div>
-    </div>
-    <div id="cms__top-nav" class="top-nav">
-        <div class="top-nav__logo">
-            <a href="#">
-                <img id="cms-logo" src="imgs/cms-logo.svg">
-            </a>
-        </div>
-        <div class="top-nav__toolbar">
-
-            <div class="top-nav__searchbar">
-                <i class="ti ti-search"></i>
-                <input class="search-bar" type="text" id="top-nav__searchbar" placeholder="Search">
-                <div class="square-icon">
-                    <i class="ti ti-adjustments-alt"></i>
-                </div>
-            </div>
-            <div class="top-nav__iconbar">
-                <div class="iconbar__notif square-icon">
-                    <i class="ti ti-bell"></i>
-                </div>
-                <div class="iconbar__user">
-                    <div class="iconbar__user-container">
-                        <div class="iconbar__user-photo">
-                            <img src="imgs/user.png">
-                        </div>
-                        <div class="iconbar__user-settings">
-                            <i class="ti ti-settings"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
     <div id="overlay-loading"></div>
-
-    <div id="cms__side-nav" class="side-nav">
-        <div class="side-nav__container">
-
-            <div class="side-nav__links">
-                <div class="side-nav__link-group">
-                    <div class="link-group__list-title">
-                        HOME
-
-                    </div>
-                    <div class="link-group__list-items">
-                        <ul class="link-group__ul">
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-dashboard"></i>
-                                    Dashboard
-                                </li>
-                            </a>
-
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-ticket"></i>
-                                    Tickets
-                                </li>
-
-                            </a>
-
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-building-store"></i>
-                                    Rewards Shop
-                                </li>
-                            </a>
-
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="side-nav__link-group">
-                    <div class="link-group__list-title">
-                        CHECKING
-                    </div>
-                    <div class="link-group__list-items">
-                        <ul class="link-group__ul">
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-calendar-event"></i>
-                                    Carousel Scheduler
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-checklist"></i>
-                                    QA Checker
-                                </li>
-                            </a>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="side-nav__link-group">
-                    <div class="link-group__list-title">
-                        BUILDING TOOLS
-                    </div>
-                    <div class="link-group__list-items">
-                        <ul class="link-group__ul">
-                            <a href="#">
-                                <li class="link-group__li active">
-                                    <i class="ti ti-wash-machine"></i>
-                                    HTML Copy Cleaner
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-dice-6"></i>
-                                    Game Repository
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-trophy"></i>
-                                    PH Reward Templates
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-message"></i>
-                                    WF Comment Generator
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-photo-star"></i>
-                                    SC PAT UAT Images
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-link"></i>
-                                    Smart Links
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-numbers"></i>
-                                    MAI Generator
-                                </li>
-                            </a>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="side-nav__link-group">
-                    <div class="link-group__list-title with__chevron-up">
-                        <a href="#">
-                            LEARNING HUB
-                            <i class="ti ti-chevron-up"></i>
-                        </a>
-
-                    </div>
-                    <div class="link-group__list-items">
-                        <ul class="link-group__ul">
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-device-tv-old"></i>
-                                    Video Tutorials
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-notebook"></i>
-                                    CMS Notebook
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li class="link-group__li">
-                                    <i class="ti ti-book-2"></i>
-                                    CMS Handbook
-                                </li>
-                            </a>
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="cms__main-body">
         <div id="cms__main-content">
@@ -271,12 +51,10 @@
                 <div id="cms__copy-cleaner" class="cms-card">
                     <div class="cms-card__header">
                         <h2 class="card-title">
-                            HTML Copy Cleaner V3
+                            Kelvinator
                         </h2>
                         <div class="card-cta__container">
                             <div class="card-cta">
-                                <button id="modal-comp__full-tncs" class="btn-cms btn-cms-outline me-2"><i
-                                        class="ti ti-eye"></i></button>
                                 <button class="btn-cms btn-cms-outline me-2" onclick="copyToClipboard()"><i
                                         class="ti ti-copy"></i></button>
                                 <button class="btn-cms btn-cms-primary" onclick="cleanHTML()" tabindex="0"><i
@@ -289,6 +67,7 @@
 
                     <div class="cms-card__body">
                         <!-- CK5 Editor -->
+                        <!-- CK5 Editor -->
                         <div class="editor"></div>
                     </div>
 
@@ -298,12 +77,17 @@
                 <div id="cms__copy-cleaner-preview" class="cms-card">
                     <div class="cms-card__header">
                         <h5 class="card-title">
-                            Statistics
+                            Choose State
                         </h5>
                     </div>
                     <hr class="cms-card__hr">
                     <div class="cms-card__body">
-                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                        <div>
+                            <textarea id="table-code">Leaderboard Table goes here</textarea>
+                        </div>
+                        <div>
+                            <span id="table-view"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,7 +98,7 @@
 
 
     <!-- CK5 Editor -->
-    <script src="ckeditor5/build/ckeditor.js"></script>
+
     <script>ClassicEditor
             .create(document.querySelector('.editor'), {
                 licenseKey: '',
@@ -329,6 +113,7 @@
                 console.error(error);
             });
     </script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="js/listeners.js"></script>
