@@ -414,7 +414,7 @@ function formatRewardTable(rawHtml) {
 
     // Create a clean, styled tbody
     const newTbody = document.createElement('tbody');
-    newTbody.style.backgroundColor = '#ffffff';
+    newTbody.setAttribute('style', 'background-color: #ffffff;');
 
     rows.forEach((tr, index) => {
         const newRow = document.createElement('tr');
@@ -440,7 +440,7 @@ function formatRewardTable(rawHtml) {
 
 function previewTerms() {
     let termsData = editor.getData('ck5-textarea');
-    let tableData = document.getElementById("table-code");
+    let tableData = document.getElementById("table-view");
     let termsPreviewBox = document.getElementById("fullterms-preview-full");
 
     if (tableData) {
