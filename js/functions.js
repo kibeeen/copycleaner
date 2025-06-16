@@ -223,6 +223,9 @@ const removables = [
     [/Call 1-800-GAMBLER.Must/g, 'Call 1-800-GAMBLER. Must', ''],
     [/p.m./g, 'PM'],
     [/<strong>KEY TERMS:<\/strong>/g, '<strong>Key Terms:</strong>'],
+    [/Key Terms>/g, '<strong>Key Terms:</strong>'],
+    [/Prizes include:>/g, '<strong>Prizes Include:</strong>'],
+    [/Prizes include>/g, '<strong>Prizes Include:</strong>'],
     [/<li>OLG Internal Control Trigger Based applies to this Promotion<\/li>/g, '<li>OLG Internal Control Trigger Based applies to this Promotion.</li>'],
     [/<p>GAMBLING PROBLEM:<\/p>/g, '<p><strong>GAMBLING PROBLEM:</strong></p>'],
     [/Eligible Game\(s\):/g, 'Eligible Games:'],
@@ -230,8 +233,10 @@ const removables = [
 
     [/earn<\/li>\s*<li>/gi, 'earn '],
     [/this “Promotion”\)<\/strong>/g, 'this “Promotion”):</strong>'],
+    [/<strong>Description of Promotion<\/strong>/g, '<strong>Description of Promotion:</strong>'],
     [/<p><strong>Promotional Period<\/strong>\s*<\/p>/g, '<p><strong>Promotional Period:</strong></p>'],
     [/<p><strong>Claiming Promotion Offer<\/strong>\s*<\/p>/g, '<p><strong>Claiming Promotion Offer:</strong></p>'],
+    [/<strong>Claiming Promotional Offer<\/strong>/g, '<strong>Claiming Promotional Offer:</strong>'],
     [/<p><strong>Registration Procedure<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedure:</strong></p>'],
     [/<p><strong>Important Terms<\/strong>\s*<\/p>/g, '<p><strong>Important Terms:</strong></p>'],
 
