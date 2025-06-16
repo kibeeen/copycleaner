@@ -228,7 +228,7 @@ const removables = [
     [/Prizes include>/g, '<strong>Prizes Include:</strong>'],
     [/<li>OLG Internal Control Trigger Based applies to this Promotion<\/li>/g, '<li>OLG Internal Control Trigger Based applies to this Promotion.</li>'],
     [/<p>GAMBLING PROBLEM:<\/p>/g, '<p><strong>GAMBLING PROBLEM:</strong></p>'],
-    [/Eligible Game\(s\):/g, 'Eligible Games:'],
+    // [/Eligible Game\(s\):/g, 'Eligible Games:'],
     // [/This is a leaderboard promotion where players earn\s*<\/li>\s*<\/ul>\s*<p>\s*\(“Leaderboard Points\).\s*<\/p>/g, 'This is a leaderboard promotion where players earn (“Leaderboard Points).</li>'],
 
     [/earn<\/li>\s*<li>/gi, 'earn '],
