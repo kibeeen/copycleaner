@@ -246,6 +246,8 @@ const removables = [
     [/<p><strong>Registration Procedure<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedure:</strong></p>'],
     [/<p><strong>Registration Procedures<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedures:</strong></p>'],
     [/<p><strong>Important Terms<\/strong>\s*<\/p>/g, '<p><strong>Important Terms:</strong></p>'],
+    [/<p><strong>Eligible Game\(s\)<\/strong>\s*<\/p>/g, '<p><strong>Eligible Game(s):</strong></p>'],
+    [/<p><strong>ELIGIBLE GAME\(S\)<\/strong>\s*<\/p>/g, '<p><strong>ELIGIBLE GAME(S):</strong></p>'],
 
     [/<p>\s*&nbsp;\s*<\/p>/g, ''],
 
