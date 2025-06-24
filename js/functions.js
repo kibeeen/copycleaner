@@ -52,6 +52,7 @@ const removables = [
     [/<span style="color:#2B579A;">/g, ''],
     [/<span style="color:#242424;">/g, ''],
     [/<span style="color:#404040;">/g, ''],
+    [/\(<em>\(Link to Terms of Service\)<\/em>\)/g, '', ''],
     [/\(as defined in the Terms of Service \(Link to Terms of Service\)/g, '(as defined in the Terms of Service)', ''],
     [/\(as defined in the Terms of Service \(https:\/\/help.pa.borgataonline.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the Terms of Service)', ''],
     [/\(as defined in the Terms of Service \(https:\/\/help.pa.betmgm.com\/en\/general-information\/legal-matters\/general-terms-and-conditions\)/g, '(as defined in the Terms of Service)', ''],
@@ -114,6 +115,11 @@ const removables = [
     [/ pm,/gi, ' PM,', 'Time Capitalization'], // converts pm to uppercase
     [/ pm\./g, ' PM.', 'Time Capitalization'], // converts pm to uppercase
     [/ am\./gi, ' AM.', 'Time Capitalization'], // converts pm to uppercase
+
+
+    [/ 11:59PM/gi, ' 11:59 PM', 'Time Capitalization'], // converts pm to uppercase
+    [/ 11:59AM/gi, ' 11:59 AM', 'Time Capitalization'], // converts pm to uppercase
+
     [/<i>.<\/i>/g, '', 'Font decoration'], // cleans <i> tags
     [/à/g, ' >', 'Font decoration'], // cleans <i> tags
     [/#BONUS_CODE#/g, '<strong>#BONUS_CODE#</strong>', 'Font decoration'], // cleans <i> tags
@@ -238,15 +244,21 @@ const removables = [
     [/<p><strong>Claiming Promotion Offer<\/strong>\s*<\/p>/g, '<p><strong>Claiming Promotion Offer:</strong></p>'],
     [/<strong>Claiming Promotional Offer<\/strong>/g, '<strong>Claiming Promotional Offer:</strong>'],
     [/<p><strong>Registration Procedure<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedure:</strong></p>'],
+    [/<p><strong>Registration Procedures<\/strong>\s*<\/p>/g, '<p><strong>Registration Procedures:</strong></p>'],
     [/<p><strong>Important Terms<\/strong>\s*<\/p>/g, '<p><strong>Important Terms:</strong></p>'],
 
     [/<p>\s*&nbsp;\s*<\/p>/g, ''],
+
+
+    [/<em>..<\/em>/g, ''],
+    [/<\/a>.../gi, '</a>.'],
+    [/\(\)/g, ''],
 
     [/GAMBLER.\s*Must/g, 'GAMBLER.</p><p>Must'],
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
 
-
+    
 
 
 
