@@ -210,6 +210,7 @@ const removables = [
     [/<strong>here;<\/strong> \[\(hyperlink to !!M2\.Promo\/offers\/grouped\?filter=cb\]/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here</a>.'],
     [/visit our General Terms and Conditions. \(LINKS TO: BetMGM T&amp;Cs for opting out of bonus\)/g, 'visit our <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">General Terms and Conditions</a>.'],
     [/visit our General Terms and Conditions. \(LINKS TO: BRAND T&amp;Cs for opting out of bonus\)/g, 'visit our <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">General Terms and Conditions</a>'],
+    [/visit our General Terms and Conditions. \(LINKS TO: PartyCasino T&amp;Cs for opting out of bonus\)/gi, 'visit our <a href="!!M2.Help/general-information/legal-matters/general-terms-and-conditions">General Terms and Conditions</a>'],
     [/<p>TERMS AND CONDITIONS \(these “Terms and Conditions”\):<\/p>\)/g, ''],
     // [/BetMGM.com/g, '<a href="BetMGM.com">BetMGM.com</a>'], 
     // [/BorgataOnline.com/g, '<a href="BorgataOnline.com">BorgataOnline.com</a>'], 
@@ -253,7 +254,6 @@ const removables = [
 
 
     [/<em>..<\/em>/g, ''],
-    [/<\/a>.../gi, '</a>.'],
     [/\(\)/g, ''],
 
     [/GAMBLER.\s*Must/g, 'GAMBLER.</p><p>Must'],
