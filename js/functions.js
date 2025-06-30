@@ -241,6 +241,9 @@ const removables = [
     [/earn<\/li>\s*<li>/gi, 'earn '],
     [/this “Promotion”\)<\/strong>/g, 'this “Promotion”):</strong>'],
     [/<strong>Description of Promotion<\/strong>/g, '<strong>Description of Promotion:</strong>'],
+    [/<strong>Wagering Requirements<\/strong>/g, '<strong>Wagering Requirements:</strong>'],
+    [/<strong>Eligible Games<\/strong>/g, '<strong>Eligible Games:</strong>'],
+    [/<strong>Restrictions on Withdrawal<\/strong>/g, '<strong>Restrictions on Withdrawal:</strong>'],
     [/<p><strong>Promotional Period<\/strong>\s*<\/p>/g, '<p><strong>Promotional Period:</strong></p>'],
     [/<p><strong>Claiming Promotion Offer<\/strong>\s*<\/p>/g, '<p><strong>Claiming Promotion Offer:</strong></p>'],
     [/<strong>Claiming Promotional Offer<\/strong>/g, '<strong>Claiming Promotional Offer:</strong>'],
@@ -257,6 +260,7 @@ const removables = [
     [/\(\)/g, ''],
 
     [/GAMBLER.\s*Must/g, 'GAMBLER.</p><p>Must'],
+    [/\(1\)day/g, '(1) day'],
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
 
