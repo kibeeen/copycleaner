@@ -260,6 +260,30 @@ const removables = [
     [/\(\)/g, ''],
 
     [/GAMBLER.\s*Must/g, 'GAMBLER.</p><p>Must'],
+
+    [/ 0TH /g, ' 0<sup>TH</sup> '],
+    [/ 9TH /g, ' 9<sup>TH</sup> '],
+    [/ 8TH /g, ' 8<sup>TH</sup> '],
+    [/ 7TH /g, ' 7<sup>TH</sup> '],
+    [/ 6TH /g, ' 6<sup>TH</sup> '],
+    [/ 5TH /g, ' 5<sup>TH</sup> '],
+    [/ 4TH /g, ' 4<sup>TH</sup> '],
+    [/ 3RD /g, ' 3<sup>RD</sup> '],
+    [/ 2ND /g, ' 2<sup>ND</sup> '],
+    [/ 1ST /g, ' 1<sup>ST</sup> '],
+
+    [/ 0th /g, ' 0<sup>th</sup> '],
+    [/ 9th /g, ' 9<sup>th</sup> '],
+    [/ 8th /g, ' 8<sup>th</sup> '],
+    [/ 7th /g, ' 7<sup>th</sup> '],
+    [/ 6th /g, ' 6<sup>th</sup> '],
+    [/ 5th /g, ' 5<sup>th</sup> '],
+    [/ 4th /g, ' 4<sup>th</sup> '],
+    [/ 3RD /g, ' 3<sup>rd</sup> '],
+    [/ 2ND /g, ' 2<sup>nd</sup> '],
+    [/ 1ST /g, ' 1<sup>st</sup> '],
+
+
     [/\(1\)day/g, '(1) day'],
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
