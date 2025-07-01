@@ -214,8 +214,8 @@ const removables = [
     [/<p>TERMS AND CONDITIONS \(these “Terms and Conditions”\):<\/p>\)/g, ''],
     // [/BetMGM.com/g, '<a href="BetMGM.com">BetMGM.com</a>'], 
     // [/BorgataOnline.com/g, '<a href="BorgataOnline.com">BorgataOnline.com</a>'], 
-    [/Please make sure to read our full Terms and Conditions before participating in this promotion./g, '<em>Please make sure to read our full Terms and Conditions before participating in this promotion.</em>'],
-    [/Please make sure to read our full Terms and Conditions before participating in this Promotion./g, '<em>Please make sure to read our full Terms and Conditions before participating in this promotion.</em>'],
+    [/Please make sure to read our full Terms and Conditions before participating in this promotion./gi, '<em>Please make sure to read our full Terms and Conditions before participating in this promotion.</em>'],
+    [/Please make sure to read our full Terms and Conditions before participating in this Promotion./gi, '<em>Please make sure to read our full Terms and Conditions before participating in this Promotion.</em>'],
 
     [/<p>\s*&nbsp;\s*<\/p>/g, ''],
     [/\s*&nbsp;\s*/g, ' '],
