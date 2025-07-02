@@ -148,7 +148,7 @@ const removables = [
     [/ \(<i>Link to Terms of Service\)\).<\/i>/g, ').', ''],
     [/<i>\(Link to Terms of Service\)<\/i>/g, '', ''],
     [/here\(LINKS TO: !!M2.Promo\/offers\/grouped\?filter=cb<i>\). <\/i>/g, '<a href="!!M2.Promo/offers/grouped?filter=cb">here.</a> ', ''],
-    [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="!!M2.Help/general-information/howto/bonus/opt-out">General Terms and Conditions.</a> ', 'Linked to Opt Out Bonus'],
+    [/General Terms and Conditions. \(LINKS TO: Borgata Online T&amp;Cs for opting out of bonus\)./g, '<a href="!!M2.Help/general-information/howto/bonus/opt-out">General Terms and Conditions</a> ', 'Linked to Opt Out Bonus'],
     [/<strong>My Account&gt; My Balance.<\/strong>/g, 'My Account&gt; My Balance.', 'Cleansed My Account: My Balance'],
     [/<strong>Standard Promotional Terms and Conditions<\/strong>/g, 'Standard Promotional Terms and Conditions', ''],
     [/\(as defined in the <strong>Terms of Service<\/strong>\)/g, 'as defined in the Terms of Service', ''],
@@ -284,7 +284,12 @@ const removables = [
     [/ 1ST /g, ' 1<sup>st</sup> '],
 
 
+    [/:00 PM/g, ' PM'],
+    [/:00 AM/g, ' AM'],
+
+
     [/\(1\)day/g, '(1) day'],
+
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
 
