@@ -284,8 +284,8 @@ const removables = [
     [/ 1ST /g, ' 1<sup>st</sup> '],
 
 
-    [/:00 PM/g, ' PM'],
-    [/:00 AM/g, ' AM'],
+    // [/:00 PM/g, ' PM'],
+    // [/:00 AM/g, ' AM'],
 
 
     [/\(1\)day/g, '(1) day'],
