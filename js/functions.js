@@ -283,6 +283,9 @@ const removables = [
     [/ 2ND /g, ' 2<sup>nd</sup> '],
     [/ 1ST /g, ' 1<sup>st</sup> '],
 
+    [/(\d+)(st|nd|rd|th)\b/g, '$1<sup>$2</sup>'],
+    [/(\d+)(ST|ND|RD|TH)\b/g, '$1<sup>$2</sup>'],
+
 
     // [/:00 PM/g, ' PM'],
     // [/:00 AM/g, ' AM'],
