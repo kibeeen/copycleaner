@@ -292,6 +292,9 @@ const removables = [
 
 
     [/\(1\)day/g, '(1) day'],
+    [/rewards(s)/g, 'reward(s)'],
+    [/regulations(s)/g, 'regulations(s)'],
+    [/BETMGM/gi, 'BetMGM'],
 
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
