@@ -292,8 +292,8 @@ const removables = [
 
 
     [/\(1\)day/g, '(1) day'],
-    [/rewards(s)/g, 'reward(s)'],
-    [/regulations(s)/g, 'regulations(s)'],
+    [/rewards\(s\)/g, 'reward(s)'],
+    [/regulations\(s\)/g, 'regulations(s)'],
     [/BETMGM/gi, 'BetMGM'],
 
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
