@@ -298,7 +298,7 @@ const removables = [
     [/Casino Bonus bonus/gi, 'Casino Bonus'],
     [/Bonus bonus/gi, 'Bonus'],
 
-    [/\[s\]/gi, '(s)'],
+    [/s\[s\]/gi, '(s)'],
     [/s(s)/gi, '(s)'],
 
 
