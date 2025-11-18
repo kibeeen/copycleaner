@@ -295,6 +295,8 @@ const removables = [
     [/rewards\(s\)/g, 'reward(s)'],
     [/regulations\(s\)/g, 'regulation(s)'],
     [/BETMGM/gi, 'BetMGM'],
+    [/Casino Bonus bonus/gi, 'Casino Bonus'],
+    [/Bonus bonus/gi, 'Bonus'],
 
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
