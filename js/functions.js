@@ -299,7 +299,7 @@ const removables = [
     [/Bonus bonus/gi, 'Bonus'],
 
     [/s\[s\]/gi, '(s)'],
-    [/s(s)/gi, '(s)'],
+    [/\[s\]/gi, '(s)'],
 
 
     [/00am/gi, '00 AM'],
