@@ -305,6 +305,9 @@ const removables = [
     [/00am/gi, '00 AM'],
     [/00pm/gi, '00 PM'],
 
+
+    [/11:59:59 EST/gi, '11:59:59 EST PM'],
+
     // [/<p><br data-cke-filler="true">\s*<\/p>/g, ''],
     // [/<ul>\s*<li>\s*Gambling Problem? Call 1-800-GAMBLER.\s*<\/li>\s*<\/ul>/g, '<p>Gambling Problem? Call 1-800-GAMBLER.</p>'],
 
